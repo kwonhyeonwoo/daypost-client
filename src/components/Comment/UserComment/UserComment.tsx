@@ -1,12 +1,12 @@
+import { usePostApi } from "../../../api/postApi";
 import { CommentWrapper } from "./style";
 import { useParams } from "react-router-dom";
-import { useAllUserPosts } from "../../../api/post/getPostApi";
 
 
 
 const UserComment = () => {
     const params = useParams();
-    const { data, errorMsg, apiErrorMsg } = useAllUserPosts();
+    const { data, errorMsg, apiErrorMsg } = usePostApi();
 
     return (
         <CommentWrapper>

@@ -7,7 +7,7 @@ import UserComment from "../components/Comment/UserComment/UserComment";
 import CommentForm from "../components/Comment/CommentForm/CommentForm";
 import { useNavigate } from "react-router-dom";
 import Home from "./home/Home";
-import { useAllUserPosts } from "../api/post/getPostApi";
+import { usePostApi } from "../api/postApi";
 
 interface IProps {
     commentOpen?: boolean;
@@ -30,7 +30,7 @@ const Comment = ({ sessionId }: IProps) => {
         console.log('session id', sessionId)
     }, [sessionId])
 
-    const { data, errorMsg, apiErrorMsg } = useAllUserPosts();
+    const { data, errorMsg, apiErrorMsg } = usePostApi();
     return (
         <>
             <Home />

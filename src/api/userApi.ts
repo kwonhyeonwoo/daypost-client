@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AccountData, LoggedInUserData, LoginData, UserData } from "../types/user";
 
@@ -21,7 +21,7 @@ export const useAccountApi = () => {
             formData.append('avatar', selectedFile);
         }
         try {
-            const response = await fetch(process.env.REACT_APP_ACCOUNT, {
+            const response = await fetch('http://localhost:4000/user/account', {
                 method: "POST",
                 body: formData,
             });
@@ -44,47 +44,51 @@ export const useAccountApi = () => {
 
 export const useAllUserApi = () => {
     const [data, setData] = useState<UserData[]>([]);
-    const fetchData = async () => {
-        const response = await fetch(process.env.REACT_APP_USER_ALL_INFO, {
-            method: "GET",
-            credentials: 'include', // 여기를 추가,
-            headers: {
-                'Content-Type': 'application/json'
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/user/infor', {
+                method: "GET",
+                credentials: 'include', // 여기를 추가,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const responseData = await response.json();
+            if (response.status === 200) {
+                return setData(responseData.users);
             }
-        })
-        const responseData = await response.json();
-        if (response.status === 200) {
-            return setData(responseData.users);
+            if (response.status === 400) {
+                return setData(responseData)
+            }
         }
-        if (response.status === 400) {
-            return setData(responseData)
-        }
-    }
-    return { data, fetchData };
+        fetchData();
+    }, [])
+
+    return { data };
 }
 
 export const useUserApi = () => {
     const [data, setData] = useState<LoggedInUserData | null>(null);
-
-    const fetchData = async () => {
-        const response = await fetch('http://localhost:4000/check', {
-            method: "GET",
-            credentials: 'include', // 여기를 추가,
-            headers: {
-                'Content-Type': 'application/json'
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('http://localhost:4000/check', {
+                method: "GET",
+                credentials: 'include', // 여기를 추가,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const responseData = await response.json();
+            if (response.status === 200) {
+                return setData(responseData);
             }
-        })
-        const responseData = await response.json();
-        if (response.status === 200) {
-            return setData(responseData);
+            if (response.status === 400) {
+                return setData(responseData)
+            }
         }
-        if (response.status === 400) {
-            return setData(responseData)
-        }
-    }
-
-
-    return { data, fetchData };
+        fetchData();
+    }, [])
+    return { data };
 }
 
 export const useLoginApi = () => {
@@ -93,8 +97,7 @@ export const useLoginApi = () => {
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const fetchData = async (data: LoginData) => {
         try {
-
-            const response = await fetch(process.env.REACT_APP_LOGIN, {
+            const response = await fetch('http://localhost:4000/users/login', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

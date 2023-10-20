@@ -4,16 +4,13 @@ import { SmNoProfileImg } from "../../common/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import { usePostUploadPost } from "../../../api/post/postUploadApi";
-import { useNavigate } from "react-router-dom";
-interface IData {
-    description: string;
-    image: string;
-}
+import { usePostUploadApi } from "../../../api/postApi";
+import { PostUploadData } from "../../../types/post";
+
 const HomePostUpload = () => {
-    const { register, handleSubmit } = useForm<IData>();
-    const { isLoading, isError, isApiError, fetchData } = usePostUploadPost();
-    const handleHomePostUpload = async (data: IData) => {
+    const { register, handleSubmit } = useForm<PostUploadData>();
+    const { isLoading, isError, isApiError, fetchData } = usePostUploadApi();
+    const handleHomePostUpload = async (data: PostUploadData) => {
         window.location.reload();
         await fetchData(data);
     }

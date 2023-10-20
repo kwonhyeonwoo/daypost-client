@@ -3,7 +3,7 @@ import { PostsSearchbar, SearchButton, SearchContainer, SearchForm, SearchInput 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import { usePostSearchApi } from "../../../api/post/postSearchApi";
+import { usePostSearchApi } from "../../../api/postApi";
 
 interface IData {
     description: string;

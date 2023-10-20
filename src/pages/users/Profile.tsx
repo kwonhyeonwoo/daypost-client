@@ -8,14 +8,9 @@ import { useAllUserApi, useUserApi } from '../../api/userApi';
 const Profile = () => {
     const params = useParams();
 
-    const { data, fetchData } = useUserApi();
-    const { data: userData, fetchData: userFetch } = useAllUserApi();
-    useEffect(() => {
-        userFetch();
-    }, [])
-    useEffect(() => {
-        fetchData();
-    }, [])
+    const { data } = useUserApi();
+    const { data: userData } = useAllUserApi();
+
     return (
         <PostListsWrap paddingTop='118px'>
             {

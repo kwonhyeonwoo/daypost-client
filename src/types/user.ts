@@ -1,5 +1,5 @@
-import { CommentData } from "./Comment/Comment";
-import { PostData } from "./Post/Post";
+import { CommentData } from "./comment";
+import { PostData } from "./post";
 
 export interface UserData {
     _id: string;

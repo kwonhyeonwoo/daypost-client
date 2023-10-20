@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { useForm } from "react-hook-form";
-import { usePostUploadPost } from "../../api/post/postUploadApi";
 import { userInfo } from "os";
 import { useUserApi } from "../../api/userApi";
+import { usePostUploadApi } from "../../api/postApi";
 
 interface IProps {
     setIsPostUploadOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -42,7 +42,7 @@ const PostUpload = ({ setIsPostUploadOpen }: IProps) => {
 
     const { register, handleSubmit } = useForm<IPostData>();
     // upload post apii
-    const { isLoading, isError, isApiError, fetchData } = usePostUploadPost();
+    const { isLoading, isError, isApiError, fetchData } = usePostUploadApi();
     const onPostSubmit = async (data: IPostData) => {
         window.location.href = '/'
         await fetchData(data, selectedFile);

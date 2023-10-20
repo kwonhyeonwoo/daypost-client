@@ -1,17 +1,14 @@
 
 import PostLists from "../../components/Post/PostLists/PostLists";
-import { useAllUserPosts } from "../../api/post/getPostApi";
 import { useEffect } from "react";
 import HomePostUpload from "../../components/Post/HomePostUpload/HomePostUpload";
 import { Wrapper, Container } from "./style";
 import { useUserApi } from "../../api/userApi";
+import { usePostApi } from "../../api/postApi";
 
 const Home = () => {
-    const { data: userInfo, fetchData: userFetch } = useUserApi();
-    useEffect(() => {
-        userFetch();
-    }, [])
-    const { data, errorMsg, apiErrorMsg } = useAllUserPosts();
+    const { data: userInfo } = useUserApi();
+    const { data, errorMsg, apiErrorMsg } = usePostApi();
     return (
         <Wrapper paddingTop={userInfo?.loggedIn ? '' : '115px'}>
             <Container>

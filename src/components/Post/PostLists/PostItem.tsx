@@ -1,4 +1,3 @@
-import { PostData } from "../../../types/Post/Post";
 import { BasicProfileImg, PostDetailContainer, ProfileNoImg } from "../../common/style";
 import PostsInfo from "./PostsInfo/PostsInfo";
 import { UserProfile, UsersInforWrap } from "./style";

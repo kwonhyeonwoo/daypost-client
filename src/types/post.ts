@@ -1,6 +1,10 @@
-import { UserData } from "../user";
-import { CommentData } from "../Comment/Comment";
+import { CommentData } from "./comment";
+import { UserData } from "./user";
 
+export interface PostUploadData {
+    image: string;
+    description: string;
+}
 export interface PostData {
     image: string;
     description: string;

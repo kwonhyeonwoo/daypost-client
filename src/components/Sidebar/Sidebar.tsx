@@ -9,16 +9,8 @@ import { useModal } from "../common/CommonLayout";
 import { useUserApi } from "../../api/userApi";
 
 const Sidebar = () => {
-
     const { open } = useModal();
-
-    const { data, fetchData } = useUserApi();
-
-    useEffect(() => {
-        fetchData();
-    }, [])
-
-
+    const { data } = useUserApi();
     const [isPostUploadOpen, setIsPostUploadOpen] = useState(false);
     const onOpenPostUploadClick = () => setIsPostUploadOpen((prev) => !prev)
     const sidebarMenu = [
