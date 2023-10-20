@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { AuthErrorMsg, Modal } from "../../common/style";
-import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../common/style";
+import { AuthErrorMsg, Modal } from "../../components/common/style";
+import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useLoginPostApi } from "../../../api/auth/loginPostApi";
+import { useLoginPostApi } from "../../api/auth/loginPostApi";
 
 interface ILoginData {
     userId: string;

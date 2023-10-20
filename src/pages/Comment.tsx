@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Modal } from "../common/style";
-import { CommentCard, CommentHeader } from "./style";
+import { Modal } from "../components/common/style";
+import { CommentCard, CommentHeader } from "../components/Comment/style";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PostDescription from "./PostDescription/PostDescription";
-import UserComment from "./UserComment/UserComment";
-import CommentForm from "./CommentForm/CommentForm";
+import PostDescription from "../components/Comment/PostDescription/PostDescription";
+import UserComment from "../components/Comment/UserComment/UserComment";
+import CommentForm from "../components/Comment/CommentForm/CommentForm";
 import { useNavigate, useParams } from "react-router-dom";
-import Home from "../Home/Home";
-import { useAllUserPosts } from "../../api/post/getPostApi";
+import Home from "./Home";
+import { useAllUserPosts } from "../api/post/getPostApi";
 
 interface IProps {
     commentOpen?: boolean;

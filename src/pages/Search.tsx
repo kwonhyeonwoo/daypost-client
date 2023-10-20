@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BestHashtgasContainer, Container, HashTags } from "./style";
+import { BestHashtgasContainer, Container, HashTags } from "../components/Search/style";
 
 
 const Search = () => {

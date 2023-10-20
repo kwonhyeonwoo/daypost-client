@@ -1,10 +1,10 @@
 
-import PostLists from "../Post/PostLists/PostLists";
-import { useAllUserPosts } from "../../api/post/getPostApi";
+import PostLists from "../components/Post/PostLists/PostLists";
+import { useAllUserPosts } from "../api/post/getPostApi";
 import { useEffect, useState } from "react";
-import HomePostUpload from "../Post/HomePostUpload/HomePostUpload";
-import { useGetUserInfo } from "../../api/auth/getUserInfo";
-import { Wrapper, Container } from "./style";
+import HomePostUpload from "../components/Post/HomePostUpload/HomePostUpload";
+import { useGetUserInfo } from "../api/auth/getUserInfo";
+import { Wrapper, Container } from "../components/Home/style";
 
 const Home = () => {
     // 회원 api

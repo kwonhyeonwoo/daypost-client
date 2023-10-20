@@ -1,13 +1,13 @@
-import { PostListsWrap } from '../../Post/PostLists/style';
-import { useGetUserInfo } from '../../../api/auth/getUserInfo';
+import { PostListsWrap } from '../../components/Post/PostLists/style';
+import { useGetUserInfo } from '../../api/auth/getUserInfo';
 import { useEffect, useState } from 'react';
-import { useAllUserPosts } from '../../../api/post/getPostApi';
-import MyPosts from './components/MyPosts/MyPosts';
-import UserStatus from './components/UserStatus/UserStatus';
+import { useAllUserPosts } from '../../api/post/getPostApi';
+import MyPosts from '../../components/Users/Profile/components/MyPosts/MyPosts';
+import UserStatus from '../../components/Users/Profile/components/UserStatus/UserStatus';
 import { useParams } from 'react-router-dom';
-import { useAllUserInfor } from '../../../api/auth/allUserInfor';
-import { useMyInfo } from '../../../api/auth/myInfor';
-import PostLists from '../../Post/PostLists/PostLists';
+import { useAllUserInfor } from '../../api/auth/allUserInfor';
+import { useMyInfo } from '../../api/auth/myInfor';
+import PostLists from '../../components/Post/PostLists/PostLists';
 
 
 

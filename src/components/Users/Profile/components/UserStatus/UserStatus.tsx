@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { LocationStatus, UserBackImg, UserInfoEdit, UserNickname, UserProfileWrap, UserStatusMsg, UserStatusWrap, UsreProfileImg } from "./style";
 import { useState } from "react";
-import UserEdit from "../../../Edit/UserEdit";
+import UserEdit from "../../../../../pages/users/UserEdit";
 
 interface IUserStatusProps {
     data?: IAuthor;

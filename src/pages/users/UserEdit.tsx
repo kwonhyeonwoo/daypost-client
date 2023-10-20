@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Modal } from "../../common/style";
-import { BackImg, EditCardHeader, EditTitle, InputContainer, SaveButton, UserEditCard, UserEditForm, UserEditInput, UserFile, UserProfileImg } from "./style";
+import { Modal } from "../../components/common/style";
+import { BackImg, EditCardHeader, EditTitle, InputContainer, SaveButton, UserEditCard, UserEditForm, UserEditInput, UserFile, UserProfileImg } from "../../components/Users/Edit/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";

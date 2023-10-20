@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 
 import "./styles/reset.css"
-import Home from './components/Home/Home';
-import Profile from './components/Users/Profile/Profile';
-import Search from './components/Search/Search';
-import Account from './components/Users/Account/Account';
-import Login from './components/Users/Login/Login';
+import Home from './pages/Home';
+import Profile from './pages/users/Profile';
+import Search from './pages/Search';
+import Account from './pages/users/Account';
+import Login from './pages/users/Login';
 import CommonLayout from './components/common/CommonLayout';
-import Comment from "./components/Comment/Comment";
+import Comment from "./pages/Comment";
 
 function App() {
+  console.log('hello');
   return (
     <Router>
       <Routes>

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { AuthErrorMsg, Modal } from "../../common/style";
-import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../common/style";
+import { AuthErrorMsg, Modal } from "../../components/common/style";
+import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import { FileLabel } from "./style";
+import { FileLabel } from "../../components/Users/Account/style";
 import { useNavigate } from "react-router-dom";
-import { useAccountPostApi } from "../../../api/auth/accountPostApi";
+import { useAccountPostApi } from "../../api/auth/accountPostApi";
 
 interface IAccountData {
     avatar: FileList; // string 대신 FileList로 변경

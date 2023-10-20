@@ -3,7 +3,7 @@ import { Container, DateAndNickNameWrap, Description, PostsImg, SvgWrap } from "
 import { Link, Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faHeart, faShareFromSquare } from "@fortawesome/free-regular-svg-icons";
-import Comment from "../../../Comment/Comment";
+import Comment from "../../../../pages/Comment";
 import { useModal } from "../../../common/CommonLayout";
 
 interface IPostsProps {
