@@ -4,7 +4,7 @@ import { AuthErrorMsg } from "../../components/common/style";
 import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useLoginPostApi } from "../../api/auth/loginPostApi";
+import { useLoginApi } from "../../api/userApi";
 
 interface ILoginData {
     userId: string;
@@ -14,7 +14,7 @@ const Account = () => {
     const navigate = useNavigate();
     const onIsCancelClick = () => navigate(-1);
     const { register, handleSubmit, formState: { errors } } = useForm<ILoginData>();
-    const { isLoading, errorMsg, fetchData } = useLoginPostApi();
+    const { isLoading, errorMsg, fetchData } = useLoginApi();
     const onLoginSubmit = async (data: ILoginData) => {
         await fetchData(data);
 

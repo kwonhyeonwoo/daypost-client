@@ -1,16 +1,15 @@
 import { PostListsWrap } from '../../components/Post/PostLists/style';
-import { useGetUserInfo } from '../../api/auth/getUserInfo';
 import { useEffect } from 'react';
 import UserStatus from '../../components/Users/Profile/components/UserStatus/UserStatus';
 import { useParams } from 'react-router-dom';
-import { useAllUserInfor } from '../../api/auth/allUserInfor';
 import PostLists from '../../components/Post/PostLists/PostLists';
+import { useAllUserApi, useUserApi } from '../../api/userApi';
 
 const Profile = () => {
     const params = useParams();
 
-    const { data, fetchData } = useGetUserInfo();
-    const { data: userData, fetchData: userFetch } = useAllUserInfor();
+    const { data, fetchData } = useUserApi();
+    const { data: userData, fetchData: userFetch } = useAllUserApi();
     useEffect(() => {
         userFetch();
     }, [])

@@ -6,8 +6,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { useForm } from "react-hook-form";
 import { usePostUploadPost } from "../../api/post/postUploadApi";
-import { useGetUserInfo } from "../../api/auth/getUserInfo";
 import { userInfo } from "os";
+import { useUserApi } from "../../api/userApi";
 
 interface IProps {
     setIsPostUploadOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,7 +38,7 @@ const PostUpload = ({ setIsPostUploadOpen }: IProps) => {
     }
     const onModalClose = () => setIsPostUploadOpen(false);
 
-    const { data } = useGetUserInfo();
+    const { data } = useUserApi();
 
     const { register, handleSubmit } = useForm<IPostData>();
     // upload post apii

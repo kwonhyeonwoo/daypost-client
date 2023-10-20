@@ -3,11 +3,11 @@ import PostLists from "../../components/Post/PostLists/PostLists";
 import { useAllUserPosts } from "../../api/post/getPostApi";
 import { useEffect } from "react";
 import HomePostUpload from "../../components/Post/HomePostUpload/HomePostUpload";
-import { useGetUserInfo } from "../../api/auth/getUserInfo";
 import { Wrapper, Container } from "./style";
+import { useUserApi } from "../../api/userApi";
 
 const Home = () => {
-    const { data: userInfo, fetchData: userFetch } = useGetUserInfo();
+    const { data: userInfo, fetchData: userFetch } = useUserApi();
     useEffect(() => {
         userFetch();
     }, [])

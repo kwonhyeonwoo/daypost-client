@@ -4,8 +4,8 @@ import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWra
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
-import { useAccountPostApi } from "../../api/auth/accountPostApi";
 import styled from "styled-components";
+import { useAccountApi } from "../../api/userApi";
 
 interface IAccountData {
     avatar: FileList;
@@ -46,7 +46,7 @@ const Account = () => {
     } = useForm<IAccountData>({ mode: 'onChange' });
 
     const [passwordMatch, setPasswordMatch] = useState('');
-    const { isLoading, errorMsg, apiErrorMsg, fetchData } = useAccountPostApi();
+    const { isLoading, errorMsg, apiErrorMsg, fetchData } = useAccountApi();
     const onAccountSubmit = async (data: IAccountData) => {
         if (data.password !== data.passwordCheck) {
             setPasswordMatch('비밀번호가 일치하지 않습니다.')

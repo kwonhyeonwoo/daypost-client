@@ -1,4 +1,4 @@
-import { UserData } from "../Auth/user";
+import { UserData } from "../user";
 import { PostData } from "../Post/Post";
 
 export interface CommentData {

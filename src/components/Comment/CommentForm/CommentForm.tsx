@@ -1,7 +1,7 @@
 import { CommentBtn, CommentInput, CommentSubmit, FormContainer } from "./style";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { useGetUserInfo } from "../../../api/auth/getUserInfo";
+import { useUserApi } from "../../../api/userApi";
 
 interface IData {
     text: string;
@@ -14,7 +14,7 @@ interface IProps {
 const CommentForm = ({ userId }: IProps) => {
     const params = useParams();
     const { register, handleSubmit } = useForm<IData>();
-    const { data } = useGetUserInfo();
+    const { data } = useUserApi();
 
     const sessionId = data?.user?._id
     const handleCommentSubmit = async (data: IData) => {

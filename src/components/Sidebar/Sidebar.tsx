@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faMagnifyingGlass, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faUser, } from "@fortawesome/free-regular-svg-icons";
 import PostUpload from "../PostUpload/PostUpload";
-import { useGetUserInfo } from "../../api/auth/getUserInfo";
 import { useModal } from "../common/CommonLayout";
+import { useUserApi } from "../../api/userApi";
 
 const Sidebar = () => {
 
     const { open } = useModal();
 
-    const { data, fetchData } = useGetUserInfo();
+    const { data, fetchData } = useUserApi();
 
     useEffect(() => {
         fetchData();

@@ -2,11 +2,12 @@ import { PostListsWrap, } from "./style";
 import { PostData } from "../../../types/Post/Post";
 import { useParams } from "react-router-dom";
 import PostItem from "./PostItem";
+import { UserData } from "../../../types/user";
 
 interface PostListsProps {
     posts?: PostData[];
     _id?: string;
-    userPosts?: IApiData;
+    userPosts?: UserData;
 }
 interface IPostsData {
     _id: string;
