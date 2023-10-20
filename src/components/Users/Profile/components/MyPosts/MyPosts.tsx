@@ -1,4 +1,3 @@
-import React from "react";
 import { PostDetailContainer, PostListsWrap } from "../../../../common/style";
 import { UsersInforWrap, UserProfile } from "../../../../Post/PostLists/style";
 import PostsInfo from "../../../../Post/PostLists/PostsInfo/PostsInfo";
@@ -41,26 +40,21 @@ const MyPosts = ({ data }: IPostListsProps) => {
         return `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}`;
     }
     const authorId = data?.posts.filter(post => post.author._id === params.id);
-
     return (
         <PostListsWrap>
             {authorId &&
                 authorId.map((item) => (
                     <PostDetailContainer>
                         <UsersInforWrap>
-                            {/* 프로필 사진 */}
                             <UserProfile>
                                 {
                                     item.author.avatar
                                         ?
-                                        // 프로필 이미지 있을경우
                                         <img className='profile-has__img' src={`http://localhost:4000/${authorId[0].author.avatar}`} alt='profile-img' />
                                         :
-                                        // 프로필 이미지 없을 경우
                                         <div className='users-profile__img' />
                                 }
                             </UserProfile>
-                            {/* 게시물 내용 */}
                             <PostsInfo
                                 _id={item.author._id}
                                 id={item._id}

@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import { AuthErrorMsg, Modal } from "../../components/common/style";
+import { AuthErrorMsg } from "../../components/common/style";
 import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { FileLabel } from "../../components/Users/Account/style";
-import { useNavigate } from "react-router-dom";
 import { useAccountPostApi } from "../../api/auth/accountPostApi";
 
 interface IAccountData {
-    avatar: FileList; // string 대신 FileList로 변경
+    avatar: FileList;
     userName: string;
     email: string;
     userId: string;
@@ -26,20 +25,17 @@ const Account = () => {
         const file = e.target.files && e.target.files[0];
 
         if (file) {
-            setSelectedImage(''); // 상태 초기화
+            setSelectedImage('');
             const reader = new FileReader();
             reader.onloadend = () => {
                 setSelectedImage(reader.result as string);
             }
             reader.readAsDataURL(file);
 
-            // react-hook-form의 상태 업데이트
             setSelectedFile(file);
         }
     }
 
-
-    // 회원가입 부분
     const {
         register,
         handleSubmit,
@@ -49,16 +45,12 @@ const Account = () => {
         formState: { errors }
     } = useForm<IAccountData>({ mode: 'onChange' });
 
-    // 비밀번호 match
     const [passwordMatch, setPasswordMatch] = useState('');
     const { isLoading, errorMsg, apiErrorMsg, fetchData } = useAccountPostApi();
     const onAccountSubmit = async (data: IAccountData) => {
-        // 비밀번호 체크
         if (data.password !== data.passwordCheck) {
             setPasswordMatch('비밀번호가 일치하지 않습니다.')
         }
-
-        // account api 
         await fetchData(data, selectedFile);
     }
     return (

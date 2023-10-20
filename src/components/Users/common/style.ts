@@ -36,9 +36,6 @@ export const AuthForm = styled.form<{ marginTop: string }>`
     flex-direction: column;
     align-items: center;
     margin-top:${(props) => props.marginTop};
-    /* input[type='file']{
-        display: none;
-    }; */
     input[type='file']{
         display: none;
     };

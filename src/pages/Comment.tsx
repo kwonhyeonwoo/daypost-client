@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Modal } from "../components/common/style";
 import { CommentCard, CommentHeader } from "../components/Comment/style";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PostDescription from "../components/Comment/PostDescription/PostDescription";
 import UserComment from "../components/Comment/UserComment/UserComment";
 import CommentForm from "../components/Comment/CommentForm/CommentForm";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Home from "./Home";
 import { useAllUserPosts } from "../api/post/getPostApi";
 
@@ -23,8 +22,6 @@ interface IProps {
 }
 
 const Comment = ({ sessionId }: IProps) => {
-    const params = useParams();
-    // 모달창 취소
     const navigate = useNavigate();
     const onCloseModal = () => {
         navigate(-1);
@@ -40,7 +37,7 @@ const Comment = ({ sessionId }: IProps) => {
             <Home />
             <Modal>
                 <CommentCard>
-                    {/* 모달 취소 버튼 */}
+
                     <CommentHeader>
                         <FontAwesomeIcon
                             size={'2x'}
@@ -48,24 +45,8 @@ const Comment = ({ sessionId }: IProps) => {
                             icon={faXmark}
                         />
                     </CommentHeader>
-                    {/* 회원 프로필, 게시물 내용 */}
-                    {/* {
-                        data?.posts.map((item, idx) => (
-                            item._id === params.id &&
-                            <PostDescription
-                                nickName={item.author.nickName}
-                                description={item.description}
-                                avatar={item.author.avatar}
-                            />
-
-                        ))
-                    } */}
-
-                    {/* 게시물 회원 댓글 */}
                     <UserComment />
-                    <CommentForm
-                        userId={sessionId}
-                    />
+                    <CommentForm userId={sessionId} />
                 </CommentCard>
             </Modal>
         </>

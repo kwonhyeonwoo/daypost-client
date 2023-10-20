@@ -19,7 +19,6 @@ export const EditTitle = styled.h3`
     font-size:17px;
     font-weight:bold;
 `
-
 export const SaveButton = styled.button`
     width:355px;
     height:44px;
@@ -57,9 +56,9 @@ export const BackImg = styled.div<{ selectedBackImage: string }>`
     }
     svg{
         position: absolute;
-        top: 50%;       /* 중앙으로부터 상단 위치 설정 */
-        left: 50%;      /* 중앙으로부터 좌측 위치 설정 */
-        transform: translate(-50%, -50%);  /* 현재 위치에서 SVG의 50% 만큼 이동하여 중앙 정렬 */
+        top: 50%;       
+        left: 50%;     
+        transform: translate(-50%, -50%);  
         opacity: 0.6;
         cursor: pointer;
         &:hover{

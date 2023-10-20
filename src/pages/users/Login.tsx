@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { AuthErrorMsg, Modal } from "../../components/common/style";
+import { AuthErrorMsg } from "../../components/common/style";
 import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useLoginPostApi } from "../../api/auth/loginPostApi";
 
@@ -13,10 +12,7 @@ interface ILoginData {
 }
 const Account = () => {
     const navigate = useNavigate();
-    // 모달 창 close
     const onIsCancelClick = () => navigate(-1);
-
-    //로그인 부분
     const { register, handleSubmit, formState: { errors } } = useForm<ILoginData>();
     const { isLoading, errorMsg, fetchData } = useLoginPostApi();
     const onLoginSubmit = async (data: ILoginData) => {

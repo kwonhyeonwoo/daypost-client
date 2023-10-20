@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { CommentBtn, CommentInput, CommentSubmit, FormContainer } from "./style";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
@@ -13,7 +12,6 @@ interface IProps {
     userId?: string;
 }
 const CommentForm = ({ userId }: IProps) => {
-    // 대글 제출
     const params = useParams();
     const { register, handleSubmit } = useForm<IData>();
     const { data } = useGetUserInfo();
@@ -44,16 +42,15 @@ const CommentForm = ({ userId }: IProps) => {
     return (
         <FormContainer>
             {
-                userId ?
-                    <CommentSubmit onSubmit={handleSubmit(handleCommentSubmit)}>
-                        <CommentInput
-                            type='text'
-                            placeholder='Post your reply'
-                            {...register('text')}
-                        />
-                        <CommentBtn>게시</CommentBtn>
-                    </CommentSubmit> :
-                    ''
+                userId &&
+                <CommentSubmit onSubmit={handleSubmit(handleCommentSubmit)}>
+                    <CommentInput
+                        type='text'
+                        placeholder='Post your reply'
+                        {...register('text')}
+                    />
+                    <CommentBtn>게시</CommentBtn>
+                </CommentSubmit>
             }
 
         </FormContainer>

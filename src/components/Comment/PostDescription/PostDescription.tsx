@@ -1,4 +1,3 @@
-import React from "react";
 import { Col, PostDescriptionWrap, Row } from "./style";
 
 interface IProps {

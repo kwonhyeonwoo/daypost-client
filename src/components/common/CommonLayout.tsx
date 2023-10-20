@@ -66,13 +66,11 @@ const ModalCloseContainer = styled.div`
 `
 
 const ModalProvider = ({ children }: PropsWithChildren) => {
-    // 게시물 업로드 모달
     const [postUploadOpen, setPostUploadOpen] = useState<boolean>(false);
     const open = (content: { title: string, content: string }) => {
         setContent(content);
         setPostUploadOpen(true);
     };
-    // 게시물 댓글 모달
     const [commentOpen, setCommentOpen] = useState<boolean>(false);
 
 

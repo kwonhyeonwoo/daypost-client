@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100%; /* 전체 너비를 차지하게 합니다 */
+    width: 100%;
     max-width: 650px;
     height:100vh;
     border-left: 1px solid rgba(46, 51, 54, 1);

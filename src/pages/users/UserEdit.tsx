@@ -35,7 +35,6 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
     const [isLoggedIn, setIsLoggedIn] = useState<ILoggedInData | null>(null);
     const [selectedBackImage, setSelectedBackImage] = useState<string>('');
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [selectedBackFile, setSelectedBackFile] = useState<File | null>(null);
 
@@ -43,14 +42,12 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
         const file = e.target.files && e.target.files[0];
         console.log('backimg', file)
         if (file) {
-            setSelectedBackImage(''); // 상태 초기화
+            setSelectedBackImage('');
             const reader = new FileReader();
             reader.onloadend = () => {
                 setSelectedBackImage(reader.result as string);
             }
             reader.readAsDataURL(file);
-
-            // react-hook-form의 상태 업데이트
             setSelectedBackFile(file);
         }
     }
@@ -59,14 +56,12 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
         const file = e.target.files && e.target.files[0];
 
         if (file) {
-            setSelectedImage(''); // 상태 초기화
+            setSelectedImage('');
             const reader = new FileReader();
             reader.onloadend = () => {
                 setSelectedImage(reader.result as string);
             }
             reader.readAsDataURL(file);
-
-            // react-hook-form의 상태 업데이트
             setSelectedFile(file);
         }
     }
@@ -74,7 +69,7 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
         const fetchData = async () => {
             const response = await fetch('http://localhost:4000/check', {
                 method: "GET",
-                credentials: 'include', // 여기를 추가,
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -113,7 +108,6 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
         // avatar가 파일로 제공되면 해당 파일을 formData에 추가
         if (selectedFile) {
             console.log('sele', data.avatar[0])
-            // formData.append('avatar', data.avatar[0]);
             formData.append('avatar', selectedFile);
         }
         if (selectedBackFile) {
@@ -132,7 +126,6 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
         if (response.status === 400) {
             console.log('400', responseData.message);
         }
-        // 이후 코드는 동일합니다...
     };
 
     const onCloseModal = () => setIsUserEdit(false);
@@ -158,7 +151,6 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
                         <label htmlFor="backImg">
                             <FontAwesomeIcon size={'2x'} icon={faCamera} />
                         </label>
-                        {/* input type file */}
                         <UserFile
                             type="file"
                             id='backImg'
@@ -178,7 +170,6 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
                         <label htmlFor="avatar">
                             <FontAwesomeIcon size={'lg'} icon={faCamera} />
                         </label>
-                        {/* input type file */}
                         <UserFile
                             type="file"
                             id='avatar'
@@ -205,7 +196,6 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
                             placeholder={isLoggedIn?.user?.webSite ? isLoggedIn?.user.webSite : '웹사이트'}
                         />
                     </InputContainer>
-
                     <SaveButton>Save</SaveButton>
                 </UserEditForm>
             </UserEditCard>

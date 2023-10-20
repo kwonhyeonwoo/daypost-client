@@ -11,7 +11,6 @@ interface IData {
     image: string;
 }
 const HomePostUpload = () => {
-    // 게시물 업로드
     const { register, handleSubmit } = useForm<IData>();
     const { isLoading, isError, isApiError, fetchData } = usePostUploadPost();
     const handleHomePostUpload = async (data: IData) => {

@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { UsersInforWrap, UserProfile, PostListsWrap, } from "./style";
-import { BasicProfileImg, PostDetailContainer, ProfileNoImg } from "../../common/style";
-import PostsInfo from "./PostsInfo/PostsInfo";
+import { PostListsWrap, } from "./style";
 import { PostData } from "../../../types/Post/Post";
-import { UserData } from "../../../types/Auth/user";
 import { useParams } from "react-router-dom";
 import PostItem from "./PostItem";
 
-// 게시물 list
 interface PostListsProps {
     posts?: PostData[];
     _id?: string;

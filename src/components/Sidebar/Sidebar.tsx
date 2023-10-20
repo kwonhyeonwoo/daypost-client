@@ -9,10 +9,9 @@ import { useGetUserInfo } from "../../api/auth/getUserInfo";
 import { useModal } from "../common/CommonLayout";
 
 const Sidebar = () => {
-    // 
+
     const { open } = useModal();
-    // 로그인 상태 유,무확인 
-    // user api
+
     const { data, fetchData } = useGetUserInfo();
 
     useEffect(() => {
@@ -20,7 +19,6 @@ const Sidebar = () => {
     }, [])
 
 
-    // postupload open
     const [isPostUploadOpen, setIsPostUploadOpen] = useState(false);
     const onOpenPostUploadClick = () => setIsPostUploadOpen((prev) => !prev)
     const sidebarMenu = [
@@ -73,7 +71,6 @@ const Sidebar = () => {
     ]
     return (
         <>
-            {/* postupload modal */}
             {
                 isPostUploadOpen
                 &&

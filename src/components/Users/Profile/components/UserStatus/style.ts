@@ -23,14 +23,12 @@ export const UsreProfileImg = styled.div`
     background-color: black;
     top:-60px;
     
-    // 프로필이 있을 경우
     .profile-has__image{
         width:122px;
         height:122px;
         border-radius: 50%;
     }
     
-    // 프로필이 없을 경우
     .profile-no__image{
         width: 122px;
         height:122px;
@@ -57,9 +55,6 @@ export const UserInfoEdit = styled.div`
         background-color: rgba(255,255,255,0.3);
     }
 `
-
-
-
 export const UserStatusWrap = styled.div`
     margin-bottom:30px;
     padding:0px 20px 0px 20px;

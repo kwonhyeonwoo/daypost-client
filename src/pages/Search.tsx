@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
 import { BestHashtgasContainer, Container, HashTags } from "../components/Search/style";
 
-
 const Search = () => {
-
-
     return (
         <Container>
             <BestHashtgasContainer>

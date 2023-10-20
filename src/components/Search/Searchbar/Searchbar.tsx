@@ -9,21 +9,14 @@ interface IData {
     description: string;
 
 }
-interface IProps {
-    // searchData: string | [];
-    // setSearchData: React.Dispatch<React.SetStateAction<string | []>>;
-
-}
 
 const Searchbar = ({ onSubmit }: any) => {
     const { register, handleSubmit } = useForm<IData>();
     const { isLoading, errorMsg, searchPostData, fetchData } = usePostSearchApi();
-    onSubmit(searchPostData)
+
     const handlePostSearchSubmit = async (data: IData) => {
         onSubmit(searchPostData)
-        // await fetchData(data)
     }
-    console.log('searchbar', searchPostData)
     return (
         <PostsSearchbar>
             <SearchForm action='/post/search' onSubmit={handleSubmit(handlePostSearchSubmit)}>

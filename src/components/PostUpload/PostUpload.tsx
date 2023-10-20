@@ -33,21 +33,16 @@ const PostUpload = ({ setIsPostUploadOpen }: IProps) => {
                 setSelectedImage(reader.result as string);
             }
             reader.readAsDataURL(file);
-
-            // react-hook-form의 상태 업데이트
             setSelectedFile(file);
         }
     }
-    // modal close 
     const onModalClose = () => setIsPostUploadOpen(false);
 
-    // 회원정보 api
     const { data } = useGetUserInfo();
-    // 게시물 업로드
+
     const { register, handleSubmit } = useForm<IPostData>();
     // upload post apii
     const { isLoading, isError, isApiError, fetchData } = usePostUploadPost();
-    // upload submit
     const onPostSubmit = async (data: IPostData) => {
         window.location.href = '/'
         await fetchData(data, selectedFile);
@@ -60,7 +55,6 @@ const PostUpload = ({ setIsPostUploadOpen }: IProps) => {
     return (
         <Modal>
             <UploadCard>
-                {/* x 버튼 */}
                 <ModalCancel onClick={onModalClose}>
                     <FontAwesomeIcon size={'2x'} icon={faXmark} />
                 </ModalCancel>
@@ -70,17 +64,15 @@ const PostUpload = ({ setIsPostUploadOpen }: IProps) => {
                 >
                     <Col>
                         <UserProfileImg>
-                            {/* 내용 입력란 */}
+
                             {
                                 data?.user.avatar
                                     ?
-                                    // 프로필 이미지 있을 경우
                                     <BasicProfileImg
                                         src={`http://localhost:4000/${data?.user.avatar}`}
                                         alt='profile-img'
                                     />
                                     :
-                                    // 프로필 이미지 없을 경우
                                     <div className='profile-no__img' />
                             }
                         </UserProfileImg>
@@ -101,7 +93,6 @@ const PostUpload = ({ setIsPostUploadOpen }: IProps) => {
                                     size={'lg'}
                                     onClick={handlePostImgCancel}
                                 />
-                                {/* 게시물 이미지 */}
                                 <PostImage alt='post-img' src={selectedImage} />
                             </SelectedImgContainer>
                         </>
