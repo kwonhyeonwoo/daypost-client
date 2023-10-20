@@ -1,10 +1,10 @@
 
-import PostLists from "../components/Post/PostLists/PostLists";
-import { useAllUserPosts } from "../api/post/getPostApi";
+import PostLists from "../../components/Post/PostLists/PostLists";
+import { useAllUserPosts } from "../../api/post/getPostApi";
 import { useEffect } from "react";
-import HomePostUpload from "../components/Post/HomePostUpload/HomePostUpload";
-import { useGetUserInfo } from "../api/auth/getUserInfo";
-import { Wrapper, Container } from "../components/Home/style";
+import HomePostUpload from "../../components/Post/HomePostUpload/HomePostUpload";
+import { useGetUserInfo } from "../../api/auth/getUserInfo";
+import { Wrapper, Container } from "./style";
 
 const Home = () => {
     const { data: userInfo, fetchData: userFetch } = useGetUserInfo();

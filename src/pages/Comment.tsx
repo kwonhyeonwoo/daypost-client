@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserComment from "../components/Comment/UserComment/UserComment";
 import CommentForm from "../components/Comment/CommentForm/CommentForm";
 import { useNavigate } from "react-router-dom";
-import Home from "./Home";
+import Home from "./home/Home";
 import { useAllUserPosts } from "../api/post/getPostApi";
 
 interface IProps {
@@ -31,7 +31,6 @@ const Comment = ({ sessionId }: IProps) => {
     }, [sessionId])
 
     const { data, errorMsg, apiErrorMsg } = useAllUserPosts();
-
     return (
         <>
             <Home />

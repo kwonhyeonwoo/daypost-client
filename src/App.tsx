@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 
 import "./styles/reset.css"
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import Profile from './pages/users/Profile';
 import Search from './pages/Search';
 import Account from './pages/users/Account';
