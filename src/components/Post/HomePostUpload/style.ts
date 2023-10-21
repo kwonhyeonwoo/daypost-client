@@ -17,7 +17,7 @@ export const UploadRowContainer = styled.div`
 export const UploadForm = styled.form`
     width: 80%;
     margin-left:22px;
-    .img{
+    #img{
         display: none;
     }
 `

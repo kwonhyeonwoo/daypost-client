@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { useForm } from "react-hook-form";
-import { userInfo } from "os";
 import { useUserApi } from "../../api/userApi";
 import { usePostUploadApi } from "../../api/postApi";
 
@@ -44,10 +43,8 @@ const PostUpload = ({ setIsPostUploadOpen }: IProps) => {
     // upload post apii
     const { isLoading, isError, isApiError, fetchData } = usePostUploadApi();
     const onPostSubmit = async (data: IPostData) => {
-        window.location.href = '/'
+        window.location.reload();
         await fetchData(data, selectedFile);
-        // 업로드 되면 홈으로 이동
-        // window.location.href = '/'
     }
     const handlePostImgCancel = () => {
         setSelectedImage('')
