@@ -61,15 +61,19 @@ export const UserStatusWrap = styled.div`
     font-size:20px;
 `
 export const UserNickname = styled.div`
+    font-size:22px;
+    font-weight: bold;
     margin-bottom:22px;
-    
 `
 export const UserStatusMsg = styled.div`
-    font-size:14px;
-    font-weight:400;    
+    font-size:17px;
+    font-weight:500;    
+    margin-bottom:14px;
 `
 export const LocationStatus = styled.div`
     opacity: 0.4;
-    font-size:14px;
+    font-size:15px;
+`
+export const WebsiteStatus = styled(LocationStatus)`
     margin-top:11px;
 `

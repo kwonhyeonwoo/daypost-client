@@ -10,7 +10,6 @@ const Profile = () => {
 
     const { data } = useUserApi();
     const { data: userData } = useAllUserApi();
-
     return (
         <PostListsWrap paddingTop='118px'>
             {

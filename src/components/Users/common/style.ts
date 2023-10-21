@@ -42,12 +42,16 @@ export const AuthForm = styled.form<{ marginTop: string }>`
 `
 export const AuthInput = styled.input`
     width:333px;
-    height:30px;
-    color:black;
-    margin-bottom:18px;
-    padding:10px;
+    height:48px;
+    margin-bottom:10px;
+    padding-left:11px;
     border:none;
+    color:black;
     border:1px solid rgba(0,0,0,0.2);
+`
+export const AuthErrorMsg = styled.span`
+    font-weight: bold;
+    color:red;
 `
 export const AuthButton = styled.button`
     width:182px;

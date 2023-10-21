@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { AuthErrorMsg } from "../../components/common/style";
-import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
+import { AuthButton, AuthCard, AuthErrorMsg, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
@@ -20,7 +19,6 @@ const Account = () => {
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    // 프로필 이미지 onChange
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0];
 
@@ -89,7 +87,7 @@ const Account = () => {
                             },
                             maxLength: {
                                 value: 5,
-                                message: '이름은 최대 5자 입닏.'
+                                message: '이름은 최대 5자 입니다.'
                             }
                         })}
                     />

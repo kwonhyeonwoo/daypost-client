@@ -97,7 +97,7 @@ export const useLoginApi = () => {
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const fetchData = async (data: LoginData) => {
         try {
-            const response = await fetch('http://localhost:4000/users/login', {
+            const response = await fetch('http://localhost:4000/user/login', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'

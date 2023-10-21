@@ -113,7 +113,7 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
         if (selectedBackFile) {
             formData.append('backImg', selectedBackFile);
         }
-        const response = await fetch('http://localhost:4000/users/edit', {
+        const response = await fetch('http://localhost:4000/user/edit', {
             method: "POST",
             credentials: 'include',
             body: formData

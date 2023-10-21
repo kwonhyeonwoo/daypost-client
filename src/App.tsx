@@ -11,7 +11,6 @@ import CommonLayout from './components/common/CommonLayout';
 import Comment from "./pages/Comment";
 
 function App() {
-  console.log('hello');
   return (
     <Router>
       <Routes>
@@ -22,7 +21,6 @@ function App() {
           <Route path="search" element={<Search />} />
           <Route path="users/:id/profile" element={<Profile />} />
           <Route path="users/:id/edit" element={<Profile />} />
-          {/* 필요하면 CommonLayout 내에서 Outlet을 사용하실 수 있습니다.*/}
         </Route>
 
         {/* CommonLayout 적용되지 않는 라우트 */}

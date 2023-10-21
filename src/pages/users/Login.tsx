@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { AuthErrorMsg } from "../../components/common/style";
-import { AuthButton, AuthCard, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
+import { AuthButton, AuthCard, AuthErrorMsg, AuthForm, AuthInput, AuthLink, AuthTitle, AuthWrapper, ModalCancel } from "../../components/Users/common/style";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useLoginApi } from "../../api/userApi";

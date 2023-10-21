@@ -23,12 +23,7 @@ export const Modal = styled.div`
     z-index: 1;
     background-color:rgba(35, 46,55, .5);
 `
-export const AuthErrorMsg = styled.span`
-    padding-top:10px;
-    padding-bottom:3px;
-    font-weight: bold;
-    color:red;
-`
+
 
 export const SmProfileImg = styled.img`
     width: 47px;

@@ -16,18 +16,7 @@ interface IPostsData {
     hashtags: string[];
     createAt: string;
 }
-interface IApiData {
-    email: string;
-    userName: string;
-    nickName: string;
-    statusMsg: string;
-    location: string;
-    userId: string;
-    avatar: string;
-    posts: IPostsData[];
-    _id: string;
-    backImg: string;
-}
+
 const PostLists = ({ posts, _id, userPosts }: PostListsProps) => {
     const params = useParams();
     return (

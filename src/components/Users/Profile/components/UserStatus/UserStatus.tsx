@@ -1,29 +1,19 @@
 import { useParams } from "react-router-dom";
-import { LocationStatus, UserBackImg, UserInfoEdit, UserNickname, UserProfileWrap, UserStatusMsg, UserStatusWrap, UsreProfileImg } from "./style";
+import { LocationStatus, UserBackImg, UserInfoEdit, UserNickname, UserProfileWrap, UserStatusMsg, UserStatusWrap, UsreProfileImg, WebsiteStatus } from "./style";
 import { useState } from "react";
 import UserEdit from "../../../../../pages/users/UserEdit";
+import { LoggedInUserData, LoginData, UserData } from "../../../../../types/user";
+import { Link } from "react-router-dom";
 
 interface IUserStatusProps {
-    data?: IAuthor;
+    data?: UserData;
     loggedIn?: string;
-}
-
-
-interface IAuthor {
-    _id: string;
-    avatar: string;
-    nickName: string;
-    backImg: string;
-    location: string;
-    statusMsg: string;
-
 }
 
 const UserStatus = ({ data, loggedIn }: IUserStatusProps) => {
     const params = useParams();
     const [isUserEdit, setIsUserEdit] = useState<boolean>(false);
     const handleEditOpen = () => setIsUserEdit((prev) => !prev);
-
     return (
         <>
             {isUserEdit && <UserEdit isUserEdit={isUserEdit} setIsUserEdit={setIsUserEdit} />}
@@ -37,10 +27,8 @@ const UserStatus = ({ data, loggedIn }: IUserStatusProps) => {
                         />
                         :
                         <div className='backImg-no__image' />
-
                 }
             </UserBackImg>
-
             <UserProfileWrap>
                 < UsreProfileImg >
                     {
@@ -75,6 +63,11 @@ const UserStatus = ({ data, loggedIn }: IUserStatusProps) => {
                         data?.location : '지역을 등록 해주십시오.'
                     }
                 </LocationStatus>
+                <WebsiteStatus>
+                    <a href={data?.webSite} target="_blank" rel="noopener noreferrer">
+                        {data?.webSite ? data?.webSite : '등록된 웹사이트가 없습니다.'}
+                    </a>
+                </WebsiteStatus>
             </UserStatusWrap>
 
         </>

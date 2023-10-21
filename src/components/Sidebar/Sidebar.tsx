@@ -19,7 +19,7 @@ const Sidebar = () => {
     const { data } = useUserApi();
     const [isPostUploadOpen, setIsPostUploadOpen] = useState(false);
     const onOpenPostUploadClick = () => setIsPostUploadOpen((prev) => !prev);
-
+    console.log('data', data)
     const sidebarMenu: MenuItem[] = [
         {
             url: '/',
@@ -56,7 +56,7 @@ const Sidebar = () => {
     ];
     const loggedInMenu: MenuItem[] = [
         {
-            url: `/usrs/${data?.user?._id}/profile`,
+            url: `/users/${data?.user?._id}/profile`,
             title: '프로필',
             icon: faUser,
         },
@@ -89,7 +89,7 @@ const Sidebar = () => {
                             <ItemContainer key={idx}>
                                 <SideMenuItem >
                                     {typeof item.icon !== 'string' && <FontAwesomeIcon icon={item.icon} />}
-                                    {item.title}
+                                    <Link to={item.url}>{item.title}</Link>
                                 </SideMenuItem>
                             </ItemContainer>
                         ))}
@@ -97,7 +97,7 @@ const Sidebar = () => {
                             data?.loggedIn
                                 ?
                                 loggedInMenu.map((item, idx) => (
-                                    <ItemContainer>
+                                    <ItemContainer key={idx}>
                                         <SideMenuItem >
                                             {typeof item.icon !== 'string' && <FontAwesomeIcon icon={item.icon} />}
                                             <Link to={item.url}>{item.title}</Link>
