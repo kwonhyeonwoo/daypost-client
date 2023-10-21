@@ -1,5 +1,5 @@
 import { PropsWithChildren, createContext, useContext, useState } from "react";
-import { CommonLayoutWrapper } from "./style";
+import { CommonLayoutWrapper, Container } from "./style";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
@@ -84,16 +84,18 @@ const ModalProvider = ({ children }: PropsWithChildren) => {
         </ModalContext.Provider>
     )
 }
-
 const CommonLayout = () => {
     return (
         <ModalProvider>
             <Sidebar />
             <CommonLayoutWrapper>
-                <Header />
-                {/* 우측 인기 회원들 */}
-                <BestUser />
-                <Outlet />
+                <Container>
+                    <Header />
+                    {/* 우측 인기 회원들 */}
+                    <BestUser />
+                    <Outlet />
+                </Container>
+
             </CommonLayoutWrapper>
         </ModalProvider>
     )

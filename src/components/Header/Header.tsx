@@ -1,6 +1,5 @@
-import React from "react";
 import { HeaderTitle, HeaderWrap } from "./style";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
     const location = useLocation();

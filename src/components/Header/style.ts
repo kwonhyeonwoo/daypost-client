@@ -6,7 +6,7 @@ export const HeaderWrap = styled.header`
     height: 115px;
     position: fixed;
     box-sizing: border-box;
-    border-bottom:1px  solid ${(colors.borderColor)};
+    border-bottom:1px solid ${colors.borderColor};
 `
 export const HeaderTitle = styled.div`
     padding:30px 0px 0px 30px;

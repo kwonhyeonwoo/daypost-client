@@ -1,10 +1,17 @@
 import styled from "styled-components";
+import { colors } from "../../styles/variables";
 
 
 export const CommonLayoutWrapper = styled.div`
     max-width: 100%;
     height:100vh;
     padding:0px 18px 0px 410px;
+`
+export const Container = styled.div`
+    max-width:650px;
+    height: 100vh;
+    border-left:1px solid ${colors.borderColor};
+    border-right:1px solid ${colors.borderColor};
 `
 export const Modal = styled.div`
     width:100%;

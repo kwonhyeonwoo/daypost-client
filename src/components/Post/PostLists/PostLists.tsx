@@ -30,7 +30,6 @@ interface IApiData {
 }
 const PostLists = ({ posts, _id, userPosts }: PostListsProps) => {
     const params = useParams();
-
     return (
         <PostListsWrap >
             {

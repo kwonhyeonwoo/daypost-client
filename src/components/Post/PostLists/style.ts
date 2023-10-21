@@ -8,7 +8,6 @@ export const PostListsWrap = styled.div<{ paddingTop?: string }>`
 export const PostContainer = styled.div`
     width: 100%;
     margin: 0 auto;
-    border-bottom:1px solid rgba(46, 51, 54, 1); ;
     padding:20px 10px;
 `
 export const UsersInforWrap = styled.div`

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { IconDefinition } from '@fortawesome/fontawesome-common-types';
+
 import { ItemContainer, SideMenuItem, SideMenuItems, SideMenuNav, SidebarWrap } from "./style";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,58 +9,66 @@ import { faThumbsUp, faUser, } from "@fortawesome/free-regular-svg-icons";
 import PostUpload from "../PostUpload/PostUpload";
 import { useModal } from "../common/CommonLayout";
 import { useUserApi } from "../../api/userApi";
-
+type MenuItem = {
+    url: string;
+    title: string;
+    icon: string | IconDefinition;
+};
 const Sidebar = () => {
     const { open } = useModal();
     const { data } = useUserApi();
     const [isPostUploadOpen, setIsPostUploadOpen] = useState(false);
-    const onOpenPostUploadClick = () => setIsPostUploadOpen((prev) => !prev)
-    const sidebarMenu = [
+    const onOpenPostUploadClick = () => setIsPostUploadOpen((prev) => !prev);
+
+    const sidebarMenu: MenuItem[] = [
         {
-            title: <Link to='/'>D</Link>,
-            img: '',
+            url: '/',
+            title: 'D',
+            icon: '',
         },
         {
-            title: <Link to='/'>홈</Link>,
-            img: <FontAwesomeIcon size={'lg'} icon={faHouse} />,
+            url: '/',
+            title: '홈',
+            icon: faHouse,
         },
         {
-            title: <Link to='/search'>검색</Link>,
-            img: <FontAwesomeIcon size={'lg'} icon={faMagnifyingGlass} />,
+            url: '/search',
+            title: '검색',
+            icon: faMagnifyingGlass,
         },
         {
-            title: <Link to='/'>베스트 10</Link>,
-            img: <FontAwesomeIcon size={'lg'} icon={faThumbsUp} />,
+            url: '/',
+            title: '베스트10',
+            icon: faThumbsUp
         },
-        // {
-        //     title: '프로필',
-        //     img: <FontAwesomeIcon size={'lg'} icon={faUser} />,
-        //     url: '/users/:id/profile'
-        // }
     ]
-    const loggedOutMenu = [
+    const loggedOutMenu: MenuItem[] = [
         {
-            title: <Link to='/users/login'>로그인</Link>,
-            img: <FontAwesomeIcon size={'lg'} icon={faUser} />,
+            url: '/users/login',
+            title: '로그인',
+            icon: faUser
         },
         {
-            title: <Link to='/users/account'>회원가입</Link>,
-            img: <FontAwesomeIcon size={'lg'} icon={faUser} />,
+            url: '/usrs/account',
+            title: '회원가입',
+            icon: faUser
         }
     ];
-    const loggedInMenu = [
+    const loggedInMenu: MenuItem[] = [
         {
-            title: <Link to={`/users/${data?.user?._id}/profile`}>프로필</Link>,
-            img: <FontAwesomeIcon size={'lg'} icon={faUser} />,
+            url: `/usrs/${data?.user?._id}/profile`,
+            title: '프로필',
+            icon: faUser,
         },
         {
-            title: <Link to=''>로그아웃</Link>,
-            img: <FontAwesomeIcon size={'lg'} icon={faRightFromBracket} />,
+            url: '',
+            title: '로그아웃',
+            icon: faRightFromBracket,
         },
         {
-            title: <Link to='' className='sidebar-post'>Post</Link>,
-            onClick: onOpenPostUploadClick,
-            img: '',
+            url: '',
+            title: 'Post',
+            icon: '',
         },
     ]
     return (
@@ -78,7 +88,7 @@ const Sidebar = () => {
                         {sidebarMenu.map((item, idx) => (
                             <ItemContainer key={idx}>
                                 <SideMenuItem >
-                                    {item.img}
+                                    {typeof item.icon !== 'string' && <FontAwesomeIcon icon={item.icon} />}
                                     {item.title}
                                 </SideMenuItem>
                             </ItemContainer>
@@ -87,10 +97,10 @@ const Sidebar = () => {
                             data?.loggedIn
                                 ?
                                 loggedInMenu.map((item, idx) => (
-                                    <ItemContainer key={idx} onClick={item.onClick}>
+                                    <ItemContainer>
                                         <SideMenuItem >
-                                            {item.img}
-                                            {item.title}
+                                            {typeof item.icon !== 'string' && <FontAwesomeIcon icon={item.icon} />}
+                                            <Link to={item.url}>{item.title}</Link>
                                         </SideMenuItem>
                                     </ItemContainer>
                                 ))
@@ -98,8 +108,8 @@ const Sidebar = () => {
                                 loggedOutMenu.map((item, idx) => (
                                     <ItemContainer key={idx}>
                                         <SideMenuItem>
-                                            {item.img}
-                                            {item.title}
+                                            {typeof item.icon !== 'string' && <FontAwesomeIcon icon={item.icon} />}
+                                            <Link to={item.url}>{item.title}</Link>
                                         </SideMenuItem>
                                     </ItemContainer>
                                 ))
