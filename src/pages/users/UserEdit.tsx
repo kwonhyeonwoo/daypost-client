@@ -4,43 +4,21 @@ import { BackImg, EditCardHeader, EditTitle, InputContainer, SaveButton, UserEdi
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faCamera } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
+import { useUserApi, useUserEditApi } from "../../api/userApi";
+import { UserData } from "../../types/user";
 interface IProps {
     setIsUserEdit: React.Dispatch<React.SetStateAction<boolean>>;
     isUserEdit: boolean;
 }
-interface IEditData {
-    nickName: string,
-    statusMsg: string,
-    location: string,
-    webSite: string;
-    avatar: string;
-    backImg: string;
-}
-type TUser = {
-    _id: string;
-    nickName: string;
-    name: string;
-    statusMsg: string;
-    location: string;
-    webSite: string;
-    avatar: string;
-    backImg: string;
-}
-interface ILoggedInData {
-    loggedIn: boolean;
-    user: TUser;
-
-}
 const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
-    const [isLoggedIn, setIsLoggedIn] = useState<ILoggedInData | null>(null);
     const [selectedBackImage, setSelectedBackImage] = useState<string>('');
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [selectedBackFile, setSelectedBackFile] = useState<File | null>(null);
+    const { data: isLoggedIn } = useUserApi();
 
     const handleBackImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0];
-        console.log('backimg', file)
         if (file) {
             setSelectedBackImage('');
             const reader = new FileReader();
@@ -65,28 +43,10 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
             setSelectedFile(file);
         }
     }
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch('http://localhost:4000/check', {
-                method: "GET",
-                credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            const responseData = await response.json();
-            if (response.status === 200) {
-                console.log('responseData', responseData);
-                return setIsLoggedIn(responseData);
-            } else {
-                console.log('error')
-            }
-        }
-        fetchData();
-    }, [])
 
     // 정보수정
-    const { register, handleSubmit, setValue } = useForm<IEditData>();
+    const { register, handleSubmit, setValue } = useForm<UserData>();
+    const { fetchData } = useUserEditApi();
     useEffect(() => {
         if (isLoggedIn?.user.nickName) setValue('nickName', isLoggedIn.user.nickName)
         if (isLoggedIn?.user?.statusMsg) setValue('statusMsg', isLoggedIn?.user?.statusMsg);
@@ -97,37 +57,9 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
 
     }, [])
 
-    const handleEditSubmit = async (data: IEditData) => {
-        const formData = new FormData();
-        formData.append('nickName', data.nickName);
-        formData.append('location', data.location);
-        formData.append('webSite', data.webSite);
-        formData.append('statusMsg', data.statusMsg);
-        formData.append('avatar', data.avatar);
-
-        // avatar가 파일로 제공되면 해당 파일을 formData에 추가
-        if (selectedFile) {
-            console.log('sele', data.avatar[0])
-            formData.append('avatar', selectedFile);
-        }
-        if (selectedBackFile) {
-            formData.append('backImg', selectedBackFile);
-        }
-        const response = await fetch('http://localhost:4000/user/edit', {
-            method: "POST",
-            credentials: 'include',
-            body: formData
-        });
-        const responseData = await response.json();
-        if (response.status === 200) {
-            window.location.href = `/users/${isLoggedIn?.user._id}/profile`
-            return responseData;
-        }
-        if (response.status === 400) {
-            console.log('400', responseData.message);
-        }
+    const handleEditSubmit = async (data: UserData) => {
+        await fetchData(data, selectedBackFile, selectedFile)
     };
-
     const onCloseModal = () => setIsUserEdit(false);
     return (
         <Modal>

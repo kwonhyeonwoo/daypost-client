@@ -1,3 +1,4 @@
+import { PostData } from "../../../types/post";
 import { BasicProfileImg, PostDetailContainer, ProfileNoImg } from "../../common/style";
 import PostsInfo from "./PostsInfo/PostsInfo";
 import { UserProfile, UsersInforWrap } from "./style";
@@ -5,15 +6,8 @@ import { UserProfile, UsersInforWrap } from "./style";
 interface PropsType {
     avatar: string;
     nickName: string;
-    post: Posts;
+    post: PostData;
     _id?: string;
-}
-interface Posts {
-    _id: string;
-    description: string;
-    image: string;
-    hashtags: string[];
-    createAt: string;
 }
 const PostItem = ({ post, avatar, nickName, _id }: PropsType) => {
     const formatDate = (dateStr: string): string => {

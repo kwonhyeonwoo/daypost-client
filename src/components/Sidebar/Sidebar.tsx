@@ -8,7 +8,8 @@ import { faHouse, faMagnifyingGlass, faRightFromBracket } from "@fortawesome/fre
 import { faThumbsUp, faUser, } from "@fortawesome/free-regular-svg-icons";
 import PostUpload from "../PostUpload/PostUpload";
 import { useModal } from "../common/CommonLayout";
-import { useUserApi } from "../../api/userApi";
+import { useAllUserApi, useUserApi } from "../../api/userApi";
+import { usePostApi } from "../../api/postApi";
 type MenuItem = {
     url: string;
     title: string;
@@ -19,7 +20,6 @@ const Sidebar = () => {
     const { data } = useUserApi();
     const [isPostUploadOpen, setIsPostUploadOpen] = useState(false);
     const onOpenPostUploadClick = () => setIsPostUploadOpen((prev) => !prev);
-    console.log('data', data)
     const sidebarMenu: MenuItem[] = [
         {
             url: '/',
@@ -49,7 +49,7 @@ const Sidebar = () => {
             icon: faUser
         },
         {
-            url: '/usrs/account',
+            url: '/users/account',
             title: '회원가입',
             icon: faUser
         }

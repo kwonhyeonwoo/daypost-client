@@ -2,15 +2,16 @@ import { useParams } from "react-router-dom";
 import { LocationStatus, UserBackImg, UserInfoEdit, UserNickname, UserProfileWrap, UserStatusMsg, UserStatusWrap, UsreProfileImg, WebsiteStatus } from "./style";
 import { useState } from "react";
 import UserEdit from "../../../../../pages/users/UserEdit";
-import { LoggedInUserData, LoginData, UserData } from "../../../../../types/user";
-import { Link } from "react-router-dom";
-
 interface IUserStatusProps {
-    data?: UserData;
+    avatar: string;
+    nickName: string;
+    statusMsg: string;
+    location: string;
+    webSite: string;
+    backImg: string;
     loggedIn?: string;
 }
-
-const UserStatus = ({ data, loggedIn }: IUserStatusProps) => {
+const UserStatus = ({ avatar, nickName, statusMsg, location, webSite, backImg, loggedIn }: IUserStatusProps) => {
     const params = useParams();
     const [isUserEdit, setIsUserEdit] = useState<boolean>(false);
     const handleEditOpen = () => setIsUserEdit((prev) => !prev);
@@ -19,10 +20,10 @@ const UserStatus = ({ data, loggedIn }: IUserStatusProps) => {
             {isUserEdit && <UserEdit isUserEdit={isUserEdit} setIsUserEdit={setIsUserEdit} />}
             <UserBackImg>
                 {
-                    data?.backImg ?
+                    backImg ?
                         <img
                             className='backImg-has__image'
-                            src={`http://localhost:4000/${data?.backImg}?timestamp=${Date.now()}`}
+                            src={`http://localhost:4000/${backImg}?timestamp=${Date.now()}`}
                             alt=''
                         />
                         :
@@ -32,10 +33,10 @@ const UserStatus = ({ data, loggedIn }: IUserStatusProps) => {
             <UserProfileWrap>
                 < UsreProfileImg >
                     {
-                        data?.avatar ?
+                        avatar ?
                             <img
                                 className='profile-has__image'
-                                src={`http://localhost:4000/${data?.avatar}?timestamp=${Date.now()}`}
+                                src={`http://localhost:4000/${avatar}?timestamp=${Date.now()}`}
                                 alt='profile-img'
                             />
                             :
@@ -43,29 +44,28 @@ const UserStatus = ({ data, loggedIn }: IUserStatusProps) => {
                     }
                 </UsreProfileImg>
                 {
-                    loggedIn === params.id ?
-                        <UserInfoEdit onClick={handleEditOpen}>EditProfie</UserInfoEdit>
-                        : null
+                    loggedIn === params.id &&
+                    <UserInfoEdit onClick={handleEditOpen}>EditProfie</UserInfoEdit>
                 }
 
             </UserProfileWrap>
             <UserStatusWrap>
                 <UserNickname>
-                    {data?.nickName}
+                    {nickName}
                 </UserNickname>
                 <UserStatusMsg>
-                    {data?.statusMsg ?
-                        data?.statusMsg : '상태메시지를 등록 해주십시오.'
+                    {statusMsg ?
+                        statusMsg : '상태메시지를 등록 해주십시오.'
                     }
                 </UserStatusMsg>
                 <LocationStatus>
-                    {data?.location ?
-                        data?.location : '지역을 등록 해주십시오.'
+                    {location ?
+                        location : '지역을 등록 해주십시오.'
                     }
                 </LocationStatus>
                 <WebsiteStatus>
-                    <a href={data?.webSite} target="_blank" rel="noopener noreferrer">
-                        {data?.webSite ? data?.webSite : '등록된 웹사이트가 없습니다.'}
+                    <a href={webSite} target="_blank" rel="noopener noreferrer">
+                        {webSite ? webSite : '등록된 웹사이트가 없습니다.'}
                     </a>
                 </WebsiteStatus>
             </UserStatusWrap>

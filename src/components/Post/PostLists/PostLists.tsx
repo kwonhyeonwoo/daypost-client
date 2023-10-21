@@ -9,13 +9,6 @@ interface PostListsProps {
     _id?: string;
     userPosts?: UserData;
 }
-interface IPostsData {
-    _id: string;
-    description: string;
-    image: string;
-    hashtags: string[];
-    createAt: string;
-}
 
 const PostLists = ({ posts, _id, userPosts }: PostListsProps) => {
     const params = useParams();
@@ -26,7 +19,7 @@ const PostLists = ({ posts, _id, userPosts }: PostListsProps) => {
                     <PostItem
                         key={idx}
                         post={item}
-                        _id={_id}
+                        _id={item.author._id}
                         avatar={item.author?.avatar}
                         nickName={item.author?.nickName} />
                 ))

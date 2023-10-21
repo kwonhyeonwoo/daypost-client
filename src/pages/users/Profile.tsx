@@ -7,21 +7,29 @@ import { useAllUserApi, useUserApi } from '../../api/userApi';
 
 const Profile = () => {
     const params = useParams();
-
     const { data } = useUserApi();
     const { data: userData } = useAllUserApi();
+    const authorIdFilter = userData.filter(item => params.id === item._id);
     return (
         <PostListsWrap paddingTop='118px'>
             {
-                params.id === data?.user?._id &&
+                authorIdFilter && authorIdFilter[0] &&
                 <UserStatus
-                    loggedIn={data?.user?._id}
-                    data={data?.user}
+                    avatar={authorIdFilter[0].avatar}
+                    nickName={authorIdFilter[0].nickName}
+                    statusMsg={authorIdFilter[0].statusMsg}
+                    location={authorIdFilter[0].location}
+                    webSite={authorIdFilter[0].webSite}
+                    backImg={authorIdFilter[0].backImg}
+                    loggedIn={data?.user._id} />
+            }
+            {
+                authorIdFilter && authorIdFilter[0] &&
+                <PostLists
+                    userPosts={authorIdFilter[0]}
                 />
             }
-            <PostLists
-                userPosts={data?.user}
-            />
+
         </PostListsWrap>
 
     )

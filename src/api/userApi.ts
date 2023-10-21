@@ -121,3 +121,41 @@ export const useLoginApi = () => {
     }
     return { isLoading, errorMsg, fetchData }
 }
+
+export const useUserEditApi = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isErrorMsg, setIsErrorMsg] = useState<string | null>(null);
+    const [apiErrorMsg, setApiErrorMsg] = useState<string | null>(null);
+    const fetchData = async (data: UserData, selectedFile?: File | null, selectedBackFile?: File | null) => {
+        const formData = new FormData();
+        formData.append('nickName', data.nickName);
+        formData.append('location', data.location);
+        formData.append('webSite', data.webSite);
+        formData.append('statusMsg', data.statusMsg);
+        formData.append('avatar', data.avatar);
+
+        // avatar가 파일로 제공되면 해당 파일을 formData에 추가
+        if (selectedFile) {
+            console.log('sele', data.avatar[0])
+            formData.append('avatar', selectedFile);
+        }
+        if (selectedBackFile) {
+            formData.append('backImg', selectedBackFile);
+        }
+        const response = await fetch('http://localhost:4000/user/edit', {
+            method: "POST",
+            credentials: 'include',
+            body: formData
+        });
+        const responseData = await response.json();
+        if (response.status === 200) {
+            setIsLoading(true);
+            window.location.reload();
+            return responseData;
+        }
+        if (response.status === 400) {
+            setIsErrorMsg(responseData.message);
+        }
+    }
+    return { fetchData, isLoading, isErrorMsg, apiErrorMsg }
+}
