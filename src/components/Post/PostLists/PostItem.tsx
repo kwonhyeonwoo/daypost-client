@@ -8,8 +8,9 @@ interface PropsType {
     nickName: string;
     post: PostData;
     _id?: string;
+    loggedIn?: string;
 }
-const PostItem = ({ post, avatar, nickName, _id }: PropsType) => {
+const PostItem = ({ post, avatar, nickName, _id, loggedIn }: PropsType) => {
     const formatDate = (dateStr: string): string => {
         const dateObj = new Date(dateStr);
         return `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}`;
@@ -31,6 +32,7 @@ const PostItem = ({ post, avatar, nickName, _id }: PropsType) => {
                         _id={_id}
                         id={post._id}
                         nickName={nickName}
+                        loggedIn={loggedIn}
                         createAt={formatDate(post.createAt)}
                         description={post.description}
                         postsImg={post.image}

@@ -27,11 +27,11 @@ const Profile = () => {
                 authorIdFilter && authorIdFilter[0] &&
                 <PostLists
                     userPosts={authorIdFilter[0]}
+                    loggedIn={data?.user._id}
                 />
             }
 
         </PostListsWrap>
-
     )
 }
 export default Profile

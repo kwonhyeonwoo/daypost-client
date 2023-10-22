@@ -9,7 +9,6 @@ export const CommonLayoutWrapper = styled.div`
 `
 export const Container = styled.div`
     max-width:650px;
-    height: 100vh;
     border-left:1px solid ${colors.borderColor};
     border-right:1px solid ${colors.borderColor};
 `
@@ -42,7 +41,8 @@ export const PostListsWrap = styled.div`
 `
 export const PostDetailContainer = styled.div`
     margin: 0 auto;
-    border-bottom:1px solid rgba(46, 51, 54, 1); ;
+    border-bottom:1px solid rgba(46, 51, 54, 1);
+    border-top:1px solid rgba(46, 51, 54, 1);
     padding:20px 10px;
 `
 export const BasicProfileImg = styled.img`

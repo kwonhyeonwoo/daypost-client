@@ -8,10 +8,12 @@ interface PostListsProps {
     posts?: PostData[];
     _id?: string;
     userPosts?: UserData;
+    loggedIn?: string;
 }
 
-const PostLists = ({ posts, _id, userPosts }: PostListsProps) => {
+const PostLists = ({ posts, _id, userPosts, loggedIn }: PostListsProps) => {
     const params = useParams();
+    console.log('posts', userPosts)
     return (
         <PostListsWrap >
             {
@@ -28,6 +30,7 @@ const PostLists = ({ posts, _id, userPosts }: PostListsProps) => {
                 userPosts?._id === params.id && userPosts?.posts.map((item, idx) => (
                     <PostItem
                         key={idx}
+                        loggedIn={loggedIn}
                         post={item}
                         _id={_id}
                         avatar={userPosts.avatar}
