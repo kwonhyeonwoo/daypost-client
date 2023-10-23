@@ -7,6 +7,7 @@ import { faEllipsis, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons'
 import Comment from "../../../../pages/Comment";
 import PostEdit from "../../PostEdit/PostEdit";
 import { PostImage } from "../../PostEdit/style";
+import { usePostDeleteApi } from "../../../../api/postApi";
 interface IPostsProps {
     nickName: string;
     description: string;
@@ -26,8 +27,12 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
     const onCommentClick = () => setCommentOpen(true);
     const onEllpsisClick = () => setIsEllpsis((prev) => !prev);
     const onPostEditOpen = () => {
-        setIsPostId(id)
         setIsPostEditOpen((prev) => !prev);
+    }
+    const { fetchData, errorMsg } = usePostDeleteApi();
+    const onPostDeleteSubmit = async (id: string) => {
+        window.location.reload();
+        await fetchData(id);
     }
     return (
         <>
@@ -55,7 +60,7 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
                             <FontAwesomeIcon onClick={onEllpsisClick} className='close-btn' size={'1x'} icon={faXmark} />
                             <div className='container delete-container'>
                                 <FontAwesomeIcon icon={faTrash} />
-                                <div className='delete-label'>Delete</div>
+                                <div onClick={() => onPostDeleteSubmit(id)} className='delete-label'>Delete</div>
                             </div>
                             <div className='container edit-container'>
                                 <FontAwesomeIcon icon={faPenToSquare} />

@@ -40,8 +40,7 @@ const PostEdit = ({ description, avatar, postsImg }: PropsType) => {
     const { register, handleSubmit } = useForm<IPostData>();
     const { isLoading, isError, isApiError, fetchData } = usePostUploadApi();
     const onPostSubmit = async (data: IPostData) => {
-        window.location.reload();
-        await fetchData(data);
+
     }
     const handlePostImgCancel = () => {
         setSelectedImage('')

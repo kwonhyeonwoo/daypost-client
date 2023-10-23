@@ -102,3 +102,32 @@ export const usePostSearchApi = () => {
     }
     return { isLoading, errorMsg, fetchData, searchPostData };
 }
+export const usePostDeleteApi = () => {
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const fetchData = async (id: string) => {
+        console.log('id', id)
+        try {
+            const response = await fetch(`http://localhost:4000/post/delete/${id}`, {
+                method: "DELETE",
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            const responseData = await response.json();
+            if (response.status === 200) {
+                console.log('sess', responseData)
+                return responseData;
+            }
+            if (response.status === 404) {
+                console.log('error', responseData)
+                return setErrorMsg(responseData.message);
+            }
+        } catch (error) {
+            console.log('error', error);
+        }
+
+    }
+    return { errorMsg, isLoading, fetchData };
+}
