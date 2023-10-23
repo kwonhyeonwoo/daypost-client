@@ -77,8 +77,8 @@ const Sidebar = () => {
                 isPostUploadOpen
                 &&
                 <PostUpload
-                    isPostUploadOpen={isPostUploadOpen}
-                    setIsPostUploadOpen={setIsPostUploadOpen}
+                // isPostUploadOpen={isPostUploadOpen}
+                // setIsPostUploadOpen={setIsPostUploadOpen}
                 />
             }
 

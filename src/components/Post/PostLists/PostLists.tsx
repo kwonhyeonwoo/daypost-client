@@ -1,5 +1,5 @@
 import { PostListsWrap, } from "./style";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import PostItem from "./PostItem";
 import { UserData } from "../../../types/user";
 import { PostData } from "../../../types/post";
@@ -13,7 +13,6 @@ interface PostListsProps {
 
 const PostLists = ({ posts, _id, userPosts, loggedIn }: PostListsProps) => {
     const params = useParams();
-    console.log('posts', userPosts)
     return (
         <PostListsWrap >
             {

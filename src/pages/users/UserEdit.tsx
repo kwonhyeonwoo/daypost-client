@@ -68,7 +68,6 @@ const UserEdit = ({ isUserEdit, setIsUserEdit }: IProps) => {
                     <FontAwesomeIcon onClick={onCloseModal} size={'2x'} icon={faXmark} />
                     <EditTitle>{isLoggedIn?.user.nickName}</EditTitle>
                 </EditCardHeader>
-
                 <UserEditForm encType="multipart/form-data" onSubmit={handleSubmit(handleEditSubmit)}>
                     <BackImg selectedBackImage={selectedBackImage}>
                         {

@@ -4,6 +4,7 @@ import HomePostUpload from "../../components/Post/HomePostUpload/HomePostUpload"
 import { Wrapper } from "./style";
 import { useUserApi } from "../../api/userApi";
 import { usePostApi } from "../../api/postApi";
+import PostUpload from "../../components/PostUpload/PostUpload";
 
 const Home = () => {
     const { data: userInfo } = useUserApi();

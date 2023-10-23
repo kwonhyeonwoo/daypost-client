@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Container, DateAndNickNameWrap, Description, ActionContainer, PostsImg, SvgWrap } from "./style";
-import { Link } from "react-router-dom";
+import { Link, Outlet, Route, useLocation, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faHeart, faShareFromSquare, faPenToSquare } from "@fortawesome/free-regular-svg-icons";
 import { faEllipsis, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons'
 import Comment from "../../../../pages/Comment";
+import PostEdit from "../../PostEdit/PostEdit";
+import { PostImage } from "../../PostEdit/style";
 interface IPostsProps {
     nickName: string;
     description: string;
@@ -18,15 +20,19 @@ interface IPostsProps {
 
 const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar, loggedIn }: IPostsProps) => {
     const [commentOpen, setCommentOpen] = useState<boolean>(false);
+    const [isPostEditOpen, setIsPostEditOpen] = useState<boolean>(false);
+    const [isPostId, setIsPostId] = useState<string>('');
     const [isEllpsis, setIsEllpsis] = useState<boolean>(false);
     const onCommentClick = () => setCommentOpen(true);
     const onEllpsisClick = () => setIsEllpsis((prev) => !prev);
+    const onPostEditOpen = () => {
+        setIsPostId(id)
+        setIsPostEditOpen((prev) => !prev);
+    }
     return (
         <>
-            {
-                commentOpen &&
-                <Comment sessionId={_id} />
-            }
+            {commentOpen && <Comment sessionId={_id} />}
+            {isPostEditOpen && <PostEdit postsImg={postsImg} avatar={avatar} description={description} />}
             <Container>
                 <DateAndNickNameWrap>
                     <Link to={`/users/${_id}/profile`}>
@@ -53,7 +59,9 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
                             </div>
                             <div className='container edit-container'>
                                 <FontAwesomeIcon icon={faPenToSquare} />
-                                <div className='edit-label'>Edit</div>
+                                <div onClick={onPostEditOpen} className='edit-label'>
+                                    Edit
+                                </div>
                             </div>
                             <div className='container share-container'>
                                 <FontAwesomeIcon size={'sm'} className='svg-share' icon={faShareFromSquare} />

@@ -71,8 +71,6 @@ const ModalProvider = ({ children }: PropsWithChildren) => {
         setPostUploadOpen(true);
     };
     const [commentOpen, setCommentOpen] = useState<boolean>(false);
-
-
     const [content, setContent] = useState<{ title: string, content: string }>();
     const close = () => setPostUploadOpen(false)
 

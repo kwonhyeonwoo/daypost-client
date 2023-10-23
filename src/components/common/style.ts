@@ -57,3 +57,50 @@ export const ProfileNoImg = styled.div`
     border-radius: 50%;
     background-color: gray;
 `
+
+// modal style
+export const ModalCard = styled.div`
+    width:594px;
+    height:648px;
+    border-radius:15px;
+    background-color:black;
+    margin:0 auto;
+    overflow-y: scroll;
+    margin-top:100px;
+`
+export const ModalForm = styled.form`
+    margin-top:22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom:42px;
+    input[type='file']{
+        display: none;
+    }
+`
+export const ModalInput = styled.input`
+    width: 85%;
+    padding:20px;
+    background-color: black;
+    border-radius:10px;
+    border:1px solid rgba(255,255,255,0.5);
+    color:white;
+    font-size:17px;
+    margin-bottom:18px;     
+`
+export const ModalCloseBtn = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:11px;
+`
+export const ModalSubmitBtn = styled.button`
+    width:282px;
+    height:44px;
+    border:none;
+    color:white;
+    font-size:20px;
+    font-weight: bold;
+    border-radius:15px;
+    background-color: ${colors.btnBackground};
+`
