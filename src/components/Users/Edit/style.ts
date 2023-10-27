@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../../styles/variables";
 
 export const UserEditCard = styled.div`
     width:594px;
@@ -24,15 +25,16 @@ export const SaveButton = styled.button`
     height:44px;
     font-size:18px;
     cursor: pointer;
-    background-color: white;
+    background-color: ${colors.btnBackground};
     border-radius:15px;
-    color:black;
+    color:white;
     border:none;
     font-weight:bold;
     transition: all .2s ease-in-out;
     &:hover{
         transition: all .2s ease-in-out;
-        background-color: rgba(255,255,255,0.7);
+        background-color: rgba(29, 156, 239,0.8);
+        color:rgba(255,255,255,0.8);
     }
 `
 

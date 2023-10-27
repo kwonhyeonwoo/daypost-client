@@ -22,8 +22,8 @@ interface IPostsProps {
 const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar, loggedIn }: IPostsProps) => {
     const [commentOpen, setCommentOpen] = useState<boolean>(false);
     const [isPostEditOpen, setIsPostEditOpen] = useState<boolean>(false);
-    const [isPostId, setIsPostId] = useState<string>('');
     const [isEllpsis, setIsEllpsis] = useState<boolean>(false);
+    const params = useParams();
     const onCommentClick = () => setCommentOpen(true);
     const onEllpsisClick = () => setIsEllpsis((prev) => !prev);
     const onPostEditOpen = () => {
@@ -45,14 +45,13 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
                     </Link>
                     <span>{createAt}</span>
                     {
-                        loggedIn &&
+                        params.id === loggedIn &&
                         <FontAwesomeIcon
                             className='post-menu__ellipsis'
                             size={'lg'}
                             icon={faEllipsis}
                             onClick={onEllpsisClick}
                         />
-
                     }
                     {
                         isEllpsis &&
@@ -93,7 +92,6 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
                     </Link>
                     <div className="heart">
                         <FontAwesomeIcon className='svg-heart' size={'lg'} icon={faHeart} />
-                        <p>1</p>
                     </div>
                     <FontAwesomeIcon className='svg-share' icon={faShareFromSquare} />
                 </SvgWrap>

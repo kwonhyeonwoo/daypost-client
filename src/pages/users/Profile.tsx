@@ -11,7 +11,6 @@ const Profile = () => {
     const { data } = useUserApi();
     const { data: userData } = useAllUserApi();
     const authorIdFilter = userData.filter(item => params.id === item._id);
-    console.log('user data', userData);
     return (
         <>
             <PostListsWrap paddingTop='118px'>
