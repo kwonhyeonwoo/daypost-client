@@ -3,28 +3,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faImage } from "@fortawesome/free-regular-svg-icons";
 import { useForm } from "react-hook-form";
-import { usePostUploadApi } from "../../../api/postApi";
+import { usePostEditApi, usePostUploadApi } from "../../../api/postApi";
 import { BasicProfileImg, Modal } from "../../common/style";
 import { Col, ImageAndSubmitBtn, ModalCancel, SelectedImgContainer, TextArea, UploadButton, UploadCard, UserPostUploadForm, UserProfileImg } from "../../PostUpload/style";
-import { PostImage, PostimageContainer } from "./style";
-import { PostsImg } from "../PostLists/PostsInfo/style";
-import { useParams } from "react-router-dom";
-import { useUserApi } from "../../../api/userApi";
-
+import { PostImage } from "./style";
 interface PropsType {
     description: string;
     avatar: string;
+    id: string;
     postsImg: string;
 }
 
 interface IPostData {
     description: string;
     image: string;
+    _id: string;
 }
 
-const PostEdit = ({ description, avatar, postsImg }: PropsType) => {
+const PostEdit = ({ description, avatar, postsImg, id }: PropsType) => {
     const [selectedImage, setSelectedImage] = useState<string>('');
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [isPostImgCancel, setIsPostImgCancel] = useState<boolean>(false);
+    const handlePostImgCancel = () => setIsPostImgCancel((prev) => !prev);
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files && e.target.files[0];
         if (file) {
@@ -37,12 +37,24 @@ const PostEdit = ({ description, avatar, postsImg }: PropsType) => {
             setSelectedFile(file);
         }
     }
-    const { register, handleSubmit } = useForm<IPostData>();
-    const { isLoading, isError, isApiError, fetchData } = usePostUploadApi();
+    const { register, handleSubmit, setValue } = useForm<IPostData>();
+    useEffect(() => {
+        if (description) setValue('description', description);
+        if (postsImg) setValue('image', postsImg);
+    }, [])
+    const { isLoading, isError, fetchData } = usePostEditApi();
     const onPostSubmit = async (data: IPostData) => {
-
+        // 이미지 취소 하고 다른 이미지 교체하고 submit 하면 변경 됨
+        // 이미지 취소 하고 submit하면 기본 이미지 유지되는 현상, 이 부분 수정해야함
+        const editData = {
+            description: data.description,
+            image: data.image,
+            _id: id
+        }
+        console.log('edit data', editData)
+        await fetchData(editData, selectedFile);
     }
-    const handlePostImgCancel = () => {
+    const handleSeleceImgCancel = () => {
         setSelectedImage('')
     }
     return (
@@ -87,7 +99,7 @@ const PostEdit = ({ description, avatar, postsImg }: PropsType) => {
                                     className='post-img__cancel__btn'
                                     icon={faXmark}
                                     size={'lg'}
-                                    onClick={handlePostImgCancel}
+                                    onClick={handleSeleceImgCancel}
                                 />
                                 <PostImage alt='post-img' src={selectedImage} />
                             </SelectedImgContainer>
@@ -95,14 +107,17 @@ const PostEdit = ({ description, avatar, postsImg }: PropsType) => {
                             :
                             postsImg &&
                             <SelectedImgContainer>
-                                {/* 이미지 취소 버튼 */}
-                                <FontAwesomeIcon
-                                    className='post-img__cancel__btn'
-                                    icon={faXmark}
-                                    size={'lg'}
-                                    onClick={handlePostImgCancel}
-                                />
-                                <PostImage alt='post-img' src={`http://localhost:4000/${avatar}`} />
+                                {!isPostImgCancel &&
+                                    <>
+                                        <FontAwesomeIcon
+                                            className='post-img__cancel__btn'
+                                            icon={faXmark}
+                                            size={'lg'}
+                                            onClick={handlePostImgCancel}
+                                        />
+                                        <PostImage alt='post-img' src={`http://localhost:4000/${postsImg}`} />
+                                    </>
+                                }
                             </SelectedImgContainer>
                     }
                     <ImageAndSubmitBtn>

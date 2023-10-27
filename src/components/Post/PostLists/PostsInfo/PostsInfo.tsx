@@ -34,10 +34,11 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
         window.location.reload();
         await fetchData(id);
     }
+    console.log('post', postsImg)
     return (
         <>
             {commentOpen && <Comment sessionId={_id} />}
-            {isPostEditOpen && <PostEdit postsImg={postsImg} avatar={avatar} description={description} />}
+            {isPostEditOpen && <PostEdit id={id} postsImg={postsImg} avatar={avatar} description={description} />}
             <Container>
                 <DateAndNickNameWrap>
                     <Link to={`/users/${_id}/profile`}>
@@ -80,6 +81,7 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
                 {
                     postsImg &&
                     <PostsImg src={`http://localhost:4000/${postsImg}`} />
+
                 }
                 <SvgWrap>
                     <Link to={`/posts/${id}/comment`}>

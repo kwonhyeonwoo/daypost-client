@@ -23,7 +23,7 @@ const UserStatus = ({ avatar, nickName, statusMsg, location, webSite, backImg, l
                     backImg ?
                         <img
                             className='backImg-has__image'
-                            src={`http://localhost:4000/${backImg}?timestamp=${Date.now()}`}
+                            src={`http://localhost:4000/${backImg}`}
                             alt=''
                         />
                         :
@@ -36,7 +36,7 @@ const UserStatus = ({ avatar, nickName, statusMsg, location, webSite, backImg, l
                         avatar ?
                             <img
                                 className='profile-has__image'
-                                src={`http://localhost:4000/${avatar}?timestamp=${Date.now()}`}
+                                src={`http://localhost:4000/${avatar}`}
                                 alt='profile-img'
                             />
                             :

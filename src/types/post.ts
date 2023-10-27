@@ -4,6 +4,7 @@ import { UserData } from "./user";
 export interface PostUploadData {
     image: string;
     description: string;
+    _id?: string;
 }
 export interface PostData {
     image: string;

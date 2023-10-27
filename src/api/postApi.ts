@@ -131,3 +131,50 @@ export const usePostDeleteApi = () => {
     }
     return { errorMsg, isLoading, fetchData };
 }
+export const usePostEditApi = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isError, setIsError] = useState<null>(null);
+    const [isApiError, setIsApiError] = useState<string>('');
+
+    const fetchData = async (data: PostUploadData, selectedFile?: File | null) => {
+        setIsLoading(true);
+        const formData = new FormData();
+        formData.append('description', data.description);
+        console.log('ldlldldl', data)
+        if (selectedFile) {
+            formData.append('image', selectedFile);
+        }
+        if (data._id) {
+            formData.append('_id', data._id);
+        }
+        try {
+            const response = await fetch('http://localhost:4000/post/edit', {
+                method: "POST",
+                credentials: 'include',
+                body: formData,
+            })
+            const responseData = await response.json();
+            if (response.status === 200) {
+                setIsLoading(true);
+                console.log('responseData', responseData);
+                return responseData;
+            }
+            if (response.status === 400) {
+                setIsLoading(false);
+                return setIsError(responseData.message);
+            }
+            if (response.status === 404) {
+                setIsLoading(false);
+                return setIsError(responseData.message);
+            }
+        } catch (error) {
+            if (error instanceof Error) {
+                setIsApiError(error.message);
+            } else {
+                setIsApiError("An unknown error occurred");
+            }
+        }
+        setIsLoading(false);
+    }
+    return { fetchData, isLoading, isError, isApiError }
+}

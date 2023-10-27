@@ -136,7 +136,6 @@ export const useUserEditApi = () => {
 
         // avatar가 파일로 제공되면 해당 파일을 formData에 추가
         if (selectedFile) {
-            console.log('sele', data.avatar[0])
             formData.append('avatar', selectedFile);
         }
         if (selectedBackFile) {
