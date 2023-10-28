@@ -1,25 +1,14 @@
-import { Col, PostDescriptionWrap, Row } from "./style";
+import { PostDescriptionWrap } from "./style";
 
 interface IProps {
-    nickName: string;
-    avatar: string;
     description?: string;
+    postsImg?: string;
 }
 
-const PostDescription = ({ nickName, avatar, description }: IProps) => {
+const PostDescription = ({ description, postsImg }: IProps) => {
     return (
         <PostDescriptionWrap>
-            <Row>
-                <img
-                    className='user-avatar'
-                    alt='profileimg'
-                    src={`http://localhost:4000/${avatar}`}
-                />
-                <Col>
-                    <span className='user-nickName'>{nickName}</span>
-                    <div>{description}</div>
-                </Col>
-            </Row>
+            <div>{description}</div>
         </PostDescriptionWrap>
     )
 }

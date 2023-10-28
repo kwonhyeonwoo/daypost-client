@@ -7,6 +7,7 @@ export const FormContainer = styled.div`
 export const CommentSubmit = styled.form`
     display: flex;
     justify-content: center;
+    position:relative;
 `
 export const CommentInput = styled.input`
     width: 85%;
@@ -17,11 +18,10 @@ export const CommentInput = styled.input`
     color: white;
 `
 export const CommentBtn = styled.button`
+    color:white;
     border:none;
-    position: absolute;
-    right:75px;
+    position:absolute;
+    right:45px;
     top:10px;
     background-color: black;
-    color:white;
-    cursor: pointer;
 `

@@ -13,6 +13,7 @@ interface PostListsProps {
 
 const PostLists = ({ posts, _id, userPosts, loggedIn }: PostListsProps) => {
     const params = useParams();
+    console.log('data', posts)
     return (
         <PostListsWrap >
             {

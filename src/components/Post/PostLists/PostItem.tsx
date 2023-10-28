@@ -29,6 +29,7 @@ const PostItem = ({ post, avatar, nickName, _id, loggedIn }: PropsType) => {
                             <ProfileNoImg />
                     }
                     <PostsInfo
+                        post={post}
                         _id={_id}
                         id={post._id}
                         nickName={nickName}

@@ -2,6 +2,7 @@ import { CommentBtn, CommentInput, CommentSubmit, FormContainer } from "./style"
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { useUserApi } from "../../../api/userApi";
+import { useCommentCreateApi } from "../../../api/commentApi";
 
 interface IData {
     text: string;
@@ -10,34 +11,20 @@ interface IData {
 }
 interface IProps {
     userId?: string;
+    postId?: string;
 }
-const CommentForm = ({ userId }: IProps) => {
+const CommentForm = ({ userId, postId }: IProps) => {
     const params = useParams();
     const { register, handleSubmit } = useForm<IData>();
     const { data } = useUserApi();
-
-    const sessionId = data?.user?._id
+    const { isLoading, isErrorMsg, isApiErrorMsg, fetchData } = useCommentCreateApi()
     const handleCommentSubmit = async (data: IData) => {
         const commentData = {
             text: data.text,
-            id: params.id,
-            userId: sessionId,
+            id: postId,
         }
-        const response = await fetch('http://localhost:4000/comment/create', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(commentData),
-        })
-        const responseData = await response.json();
-        if (response.status === 200) {
-            console.log('create Comment', responseData);
-            return responseData;
-        }
-        if (response.status === 400) {
-            console.log('create comment ', responseData);
-        }
+        window.location.reload();
+        await fetchData(commentData);
     }
     return (
         <FormContainer>
@@ -47,12 +34,21 @@ const CommentForm = ({ userId }: IProps) => {
                     <CommentInput
                         type='text'
                         placeholder='Post your reply'
-                        {...register('text')}
+                        {...register('text', {
+                            required: '댓글을 입력하십시오.',
+                            minLength: {
+                                value: 4,
+                                message: '댓글은 최소 4자 이상입니다.'
+                            },
+                            maxLength: {
+                                value: 30,
+                                message: '댓글은 최대 30자 이하 입니다.'
+                            }
+                        })}
                     />
                     <CommentBtn>게시</CommentBtn>
                 </CommentSubmit>
             }
-
         </FormContainer>
     )
 }

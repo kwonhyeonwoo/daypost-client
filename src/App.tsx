@@ -9,7 +9,6 @@ import Account from './pages/users/Account';
 import Login from './pages/users/Login';
 import CommonLayout from './components/common/CommonLayout';
 import Comment from "./pages/Comment";
-import PostEdit from './components/Post/PostEdit/PostEdit';
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         {/* CommonLayout 적용되는 라우트 */}
         <Route path="/" element={<CommonLayout />}>
           <Route index element={<Home />} />
-          <Route path="posts/:id/comment" element={<Comment />} />
           <Route path="search" element={<Search />} />
           <Route path="users/:id/profile" element={<Profile />} />
         </Route>

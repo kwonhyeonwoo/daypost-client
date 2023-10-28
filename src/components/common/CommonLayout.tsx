@@ -83,7 +83,7 @@ const ModalProvider = ({ children }: PropsWithChildren) => {
 }
 const CommonLayout = () => {
     return (
-        <ModalProvider>
+        <>
             <Sidebar />
             <CommonLayoutWrapper>
                 <Container>
@@ -92,9 +92,10 @@ const CommonLayout = () => {
                     <BestUser />
                     <Outlet />
                 </Container>
-
             </CommonLayoutWrapper>
-        </ModalProvider>
+        </>
+
+
     )
 }
 export default CommonLayout;

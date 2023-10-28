@@ -6,8 +6,9 @@ import { faComment, faHeart, faShareFromSquare, faPenToSquare } from "@fortaweso
 import { faEllipsis, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons'
 import Comment from "../../../../pages/Comment";
 import PostEdit from "../../PostEdit/PostEdit";
-import { PostImage } from "../../PostEdit/style";
 import { usePostDeleteApi } from "../../../../api/postApi";
+import { CommentData } from "../../../../types/comment";
+import { PostData } from "../../../../types/post";
 interface IPostsProps {
     nickName: string;
     description: string;
@@ -17,9 +18,10 @@ interface IPostsProps {
     avatar: string;
     loggedIn?: string;
     _id?: string;
+    post?: PostData;
 }
 
-const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar, loggedIn }: IPostsProps) => {
+const PostsInfo = ({ nickName, description, _id, createAt, id, post, postsImg, avatar, loggedIn }: IPostsProps) => {
     const [commentOpen, setCommentOpen] = useState<boolean>(false);
     const [isPostEditOpen, setIsPostEditOpen] = useState<boolean>(false);
     const [isEllpsis, setIsEllpsis] = useState<boolean>(false);
@@ -34,10 +36,19 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
         window.location.reload();
         await fetchData(id);
     }
-    console.log('post', postsImg)
     return (
         <>
-            {commentOpen && <Comment sessionId={_id} />}
+            {commentOpen &&
+                <Comment
+                    postId={id}
+                    sessionId={_id}
+                    avatar={avatar}
+                    postsImg={postsImg}
+                    nickName={nickName}
+                    description={description}
+                    comment={post?.comments}
+                />
+            }
             {isPostEditOpen && <PostEdit id={id} postsImg={postsImg} avatar={avatar} description={description} />}
             <Container>
                 <DateAndNickNameWrap>
@@ -84,14 +95,12 @@ const PostsInfo = ({ nickName, description, _id, createAt, id, postsImg, avatar,
 
                 }
                 <SvgWrap>
-                    <Link to={`/posts/${id}/comment`}>
-                        <FontAwesomeIcon
-                            className='svg-comment'
-                            size={'lg'}
-                            onClick={onCommentClick}
-                            icon={faComment}
-                        />
-                    </Link>
+                    <FontAwesomeIcon
+                        className='svg-comment'
+                        size={'lg'}
+                        onClick={onCommentClick}
+                        icon={faComment}
+                    />
                     <div className="heart">
                         <FontAwesomeIcon className='svg-heart' size={'lg'} icon={faHeart} />
                     </div>
