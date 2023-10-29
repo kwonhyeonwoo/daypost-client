@@ -4,7 +4,7 @@ import { colors } from "../../../styles/variables";
 export const UploadWrapper = styled.div`
     max-width: 650px;
     width: 100%;
-    padding-top:155px;
+    padding-top:95px;
     border-bottom:1px solid ${(colors.borderColor)};
     border-left:1px solid ${(colors.borderColor)};
     border-right:1px solid ${(colors.borderColor)};

@@ -1,3 +1,4 @@
+import Searchbar from "../Search/Searchbar/Searchbar";
 import { HeaderTitle, HeaderWrap } from "./style";
 import { useLocation } from "react-router-dom";
 
@@ -6,7 +7,7 @@ const Header = () => {
     return (
         <HeaderWrap>
             <HeaderTitle>
-                홈
+
             </HeaderTitle>
         </HeaderWrap>
     )

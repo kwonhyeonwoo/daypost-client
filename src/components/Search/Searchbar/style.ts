@@ -1,15 +1,12 @@
 import styled from "styled-components";
 
 export const PostsSearchbar = styled.div`
-    width:650px;
-    height:55px;
-    position:fixed;
-    background-color:rgba(0,0,0,0.4);
-    border:1px solid rgba(46, 51, 54, 1);
-    z-index:1;
+    width:600px;
+    position: relative;
+    top:15px;
+    left:20px;
 `
 export const SearchForm = styled.form`
-    height:100%;
     display:flex;
     align-items: center;
     justify-content: center;

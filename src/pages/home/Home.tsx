@@ -9,6 +9,7 @@ import PostUpload from "../../components/PostUpload/PostUpload";
 const Home = () => {
     const { data: userInfo } = useUserApi();
     const { data, errorMsg, apiErrorMsg } = usePostApi();
+    console.log('ddd', data)
     return (
         <Wrapper paddingTop={userInfo?.loggedIn ? '' : '115px'}>
             {userInfo?.loggedIn ? <HomePostUpload /> : ''}

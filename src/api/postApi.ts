@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { PostData, PostUploadData } from "../types/post";
-
+interface SearchData {
+    description: string;
+}
 export const usePostApi = () => {
     const [data, setData] = useState<PostData[]>([]);
     const [errorMsg, setErrorMsg] = useState<string>('');
@@ -72,35 +74,6 @@ export const usePostUploadApi = () => {
         setIsLoading(false);
     }
     return { isLoading, isError, isApiError, fetchData };
-}
-
-export const usePostSearchApi = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [errorMsg, setErrorMsg] = useState<string | null>(null);
-    const [searchPostData, setSearchPostData] = useState<PostData | undefined>(undefined);
-    const fetchData = async (data: PostData) => {
-        try {
-            setIsLoading(true)
-            const response = await fetch(`http://localhost:4000/post/search/${data.description}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            })
-            const responseData = await response.json();
-            if (response.status === 200) {
-                setIsLoading(true);
-                return setSearchPostData(responseData);
-            }
-            if (response.status === 400) {
-                setIsLoading(false);
-                return setErrorMsg(responseData.message);
-            }
-            setIsLoading(false);
-        } catch (error) {
-        }
-    }
-    return { isLoading, errorMsg, fetchData, searchPostData };
 }
 export const usePostDeleteApi = () => {
     const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -177,4 +150,35 @@ export const usePostEditApi = () => {
         setIsLoading(false);
     }
     return { fetchData, isLoading, isError, isApiError }
+}
+export const usePostSearchApi = () => {
+    const [isErrorMsg, setIsErrorMsg] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isData, setIsData] = useState<PostData | null>(null);
+    const fetchData = async (data: SearchData) => {
+        try {
+            const response = await fetch(`http://localhost:4000/post/search?description=${data.description}`, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
+            const responseData = await response.json();
+            if (response.status === 200) {
+                setIsLoading(true);
+                setIsData(responseData);
+                console.log('postAPo', isData)
+                return responseData;
+            }
+            if (response.status === 400) {
+                setIsLoading(false);
+                return setIsErrorMsg(responseData.message);
+            }
+            setIsLoading(false);
+        } catch (error) {
+
+        }
+    }
+
+    return { isErrorMsg, isLoading, fetchData, isData };
 }
